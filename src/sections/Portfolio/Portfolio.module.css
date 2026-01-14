@@ -1,0 +1,146 @@
+.portfolioSection {
+  position: relative !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  padding: 96px 0 !important;
+  overflow: hidden !important;
+  background-color: var(--bg-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.portfolioRainbow {
+  position: relative !important;
+  height: 600px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 48px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 var(--space-4) !important;
+}
+
+.projectCardRainbow {
+  position: absolute !important;
+  width: 320px !important;
+  height: 400px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-card) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 32px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+
+.cardIcon {
+  width: 80px !important;
+  height: 80px !important;
+  background: var(--accent-blue) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 40px !important;
+  margin-bottom: 24px !important;
+}
+
+.projectCardRainbow h4 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 8px !important;
+}
+
+.projectCardRainbow p {
+  font-size: 14px !important;
+  color: var(--text-secondary) !important;
+}
+
+.btnViewAll {
+  display: block !important;
+  margin: 0 auto !important;
+  background: var(--accent-blue) !important;
+  color: white !important;
+  padding: 14px 32px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.btnViewAll:hover {
+  background: #2563eb !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-button) !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .portfolioSection {
+    padding: 64px 0 !important;
+  }
+
+  .portfolioRainbow {
+    height: auto !important;
+    min-height: 600px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(5, 1fr) !important;
+    gap: 24px !important;
+    margin-bottom: 32px !important;
+  }
+
+  .projectCardRainbow {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    height: 200px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    x: 0 !important;
+    y: 0 !important;
+    rotate: 0 !important;
+    scale: 1 !important;
+  }
+
+  .cardIcon {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 30px !important;
+  }
+
+  .btnViewAll {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectCardRainbow {
+    max-width: 100% !important;
+    padding: 24px 16px !important;
+  }
+
+  .cardIcon {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 24px !important;
+  }
+
+  .projectCardRainbow h4 {
+    font-size: 18px !important;
+  }
+
+  .projectCardRainbow p {
+    font-size: 12px !important;
+  }
+}

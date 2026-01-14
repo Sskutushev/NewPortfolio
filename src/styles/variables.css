@@ -1,0 +1,70 @@
+/* Global CSS Variables */
+:root {
+  /* Backgrounds */
+  --bg-primary: #f7f9fc; /* Светло-голубой фон */
+  --bg-card: #ffffff; /* Белые карточки */
+  --bg-overlay: rgba(255, 255, 255, 0.7); /* Полупрозрачный overlay */
+
+  /* Text */
+  --text-primary: #2d3748; /* Темно-серый */
+  --text-secondary: #4a5568; /* Средне-серый */
+  --text-muted: #718096; /* Светло-серый */
+  --text-accent: #3b82f6; /* Синий акцент */
+
+  /* Accent Colors */
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #60a5fa;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+
+  /* Borders */
+  --border-light: #e2e8f0;
+  --border-card: rgba(255, 255, 255, 0.8);
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 4px 16px rgba(59, 130, 246, 0.3);
+
+  /* Font sizes */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --text-4xl: 48px;
+  --text-5xl: 56px;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Spacing System */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* Dark mode variables */
+[data-theme='dark'] {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e0;
+  --text-muted: #94a3b8;
+  --border-light: #334155;
+  --border-card: rgba(255, 255, 255, 0.1);
+}

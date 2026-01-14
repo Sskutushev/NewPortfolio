@@ -1,0 +1,195 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Import CSS Variables */
+@import './variables.css';
+
+/* Reset and base styles */
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 60px !important;
+}
+
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif !important;
+  font-size: var(--text-base) !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-primary) !important;
+  line-height: 1.6 !important;
+  overflow-x: hidden !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: var(--text-primary) !important;
+}
+
+h1 {
+  font-size: var(--text-4xl) !important;
+}
+
+h2 {
+  font-size: var(--text-3xl) !important;
+}
+
+h3 {
+  font-size: var(--text-2xl) !important;
+}
+
+h4 {
+  font-size: var(--text-xl) !important;
+}
+
+p {
+  font-size: var(--text-base) !important;
+  color: var(--text-secondary) !important;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+ul,
+ol {
+  list-style: none !important;
+}
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+button {
+  border: none !important;
+  background: none !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  outline: none !important;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit !important;
+}
+
+/* Container */
+.container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Typography classes */
+.sectionTitle {
+  font-size: var(--text-3xl) !important;
+  text-align: center !important;
+  margin-bottom: var(--space-6) !important;
+  position: relative !important;
+}
+
+/* Buttons */
+.btnPrimary {
+  background: var(--accent-blue) !important;
+  color: white !important;
+  padding: 14px 32px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: var(--text-base) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: var(--shadow-button) !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--space-1) !important;
+}
+
+.btnPrimary:hover {
+  background: #2563eb !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+.btnResume {
+  background: transparent !important;
+  border: 1.5px solid var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+  padding: 8px 20px !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.btnResume:hover {
+  background: var(--accent-blue) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-button) !important;
+}
+
+/* Common classes */
+.gradientText {
+  background: var(--accent-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-2) !important;
+  }
+
+  h1 {
+    font-size: 36px !important; /* Updated for mobile */
+  }
+
+  h2 {
+    font-size: var(--text-2xl) !important;
+  }
+
+  .sectionTitle {
+    font-size: var(--text-2xl) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: var(--text-xl) !important;
+  }
+
+  .btnPrimary {
+    padding: 12px 24px !important;
+    font-size: var(--text-sm) !important;
+  }
+
+  .btnResume {
+    padding: 6px 16px !important;
+    font-size: 12px !important;
+  }
+}

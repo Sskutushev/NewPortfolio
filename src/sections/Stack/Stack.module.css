@@ -1,0 +1,110 @@
+.stackSection {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  padding: var(--space-12) 0 !important;
+  background-color: var(--bg-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.stackGrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 var(--space-4) !important;
+}
+
+.stackCard {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-card) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 32px 24px !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: all 0.3s ease !important;
+}
+
+.stackCard:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-card-hover) !important;
+}
+
+.stackIcon {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: var(--radius-md) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
+}
+
+.tsIcon {
+  background: #3178c6 !important;
+  color: white !important;
+}
+
+.reactIcon {
+  background: #61dafb !important;
+  color: #282c34 !important;
+}
+
+.nodeIcon {
+  background: #f7df1e !important;
+  color: #000 !important;
+}
+
+.jsIcon {
+  background: #f7df1e !important;
+  color: #000 !important;
+}
+
+.infraIcon {
+  background: #808080 !important;
+  color: white !important;
+}
+
+.web3Icon {
+  background: #6b6bff !important;
+  color: white !important;
+}
+
+.stackCard h4 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 12px !important;
+}
+
+.stackCard p {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .stackSection {
+    padding: var(--space-8) 0 !important;
+  }
+
+  .stackGrid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stackCard {
+    padding: 24px 16px !important;
+  }
+
+  .stackIcon {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 20px !important;
+  }
+}
