@@ -101,30 +101,55 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ activeTab }) => {
 
   
 
-      const interval = setInterval(() => {
-
-        setCurrentIndex((prev) => (prev + 1) % techArray.length);
-
-      }, 5000); // 5 секунд на карточку
+          const interval = setInterval(() => {
 
   
 
-      return () => clearInterval(interval);
-
-    }, [isPaused, techArray.length]);
+            setCurrentIndex((prev) => (prev + 1) % techArray.length);
 
   
 
-      // Sync carousel with active tab
+          }, 5000); // 5 секунд на карточку
 
   
 
-      useEffect(() => {
-        const index = techArray.indexOf(activeTab);
-        if (index !== -1 && index !== currentIndex) {
-          setCurrentIndex(index);
-        }
-      }, [activeTab, techArray, currentIndex]);
+      
+
+  
+
+          return () => clearInterval(interval);
+
+  
+
+        }, [isPaused, techArray.length, currentIndex]); // Added currentIndex
+
+  
+
+        // Sync carousel with active tab
+
+  
+
+        useEffect(() => {
+
+  
+
+          const index = techArray.indexOf(activeTab);
+
+  
+
+          if (index !== -1) {
+
+  
+
+            setCurrentIndex(index);
+
+  
+
+          }
+
+  
+
+        }, [activeTab]); // Removed techArray and currentIndex to prevent fighting with auto-rotation
 
   
 
