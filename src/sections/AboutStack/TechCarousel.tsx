@@ -2,9 +2,15 @@ import React from 'react';
 import { motion, AnimatePresence, cubicBezier } from 'framer-motion';
 import styles from './TechCarousel.module.css';
 
+interface TechDataItem {
+  title: string;
+  icon: string;
+  description: string;
+}
+
 interface TechCarouselProps {
   currentIndex: number;
-  techData: any;
+  techData: Record<string, TechDataItem>;
   techArray: string[];
   onIndicatorClick: (index: number) => void;
 }
@@ -15,7 +21,8 @@ const TechCarousel: React.FC<TechCarouselProps> = ({
   techArray,
   onIndicatorClick,
 }) => {
-  const currentTech = techData[techArray[currentIndex] as keyof typeof techData];
+  const currentTech =
+    techData[techArray[currentIndex] as keyof typeof techData];
 
   return (
     <div className={styles.carouselWrapper}>
@@ -68,7 +75,5 @@ const TechCarousel: React.FC<TechCarouselProps> = ({
     </div>
   );
 };
-
-export default TechCarousel;
 
 export default TechCarousel;
