@@ -1,0 +1,182 @@
+.aboutStackSection {
+  position: relative;
+  min-height: 100vh;
+  padding: var(--space-12) 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(254, 254, 255, 0.2) 0%,
+    rgba(143, 186, 255, 0.25) 35%,
+    rgba(120, 171, 255, 0.3) 45%,
+    rgba(70, 138, 248, 0.35) 70%,
+    rgba(87, 151, 255, 0.4) 85%,
+    rgba(39, 122, 255, 0.45) 100%
+  );
+  display: flex;
+  align-items: center;
+}
+
+.aboutStackGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: var(--space-6);
+  align-items: start;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* LEFT COLUMN */
+.leftColumn {
+  margin-left: -40px !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  font-size: 45px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: rgba(26, 26, 26, 0.75);
+  margin-bottom: 55px !important;
+}
+
+.aboutCard {
+  width: 620px !important;
+  height: 280px;
+  background: #ffffff;
+  border: 1px solid rgba(58, 109, 194, 0.8);
+  border-radius: 20px;
+  padding: 20px !important;
+  box-shadow: 15px 15px 50px 5px rgba(143, 186, 255, 1);
+  box-sizing: border-box; 
+}
+
+.aboutText {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--text-secondary);
+  margin-bottom: 35px !important;
+}
+
+.aboutList {
+  list-style: none;
+  padding: 0;
+}
+
+.aboutList li {
+  position: relative;
+  padding-left: 20px !important;
+  font-size: 15px;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+}
+
+.aboutList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+/* RIGHT COLUMN */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center; /* Added for centering */
+}
+
+.tabsRoadmap {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  overflow-x: visible;
+  scrollbar-width: none; /* Firefox */
+}
+
+.tabsRoadmap::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.tab {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(58, 109, 194, 0.3);
+  border-radius: 12px;
+  padding: 10px 20px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative; /* Added for ::after positioning */
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(58, 109, 194, 0.6);
+}
+
+.tabActive {
+  background: #ffffff;
+  color: #0042AD;
+  border-color: #0042AD;
+}
+
+.tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px; 
+  background: linear-gradient(to right, #5595FF, #0042AD);
+}
+
+/* LEVITATING VECTOR */
+.levitatingVector {
+  position: absolute;
+  bottom: 80px;
+  left: 47%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.levitatingVector img {
+  filter: invert(48%) sepia(80%) saturate(1500%) hue-rotate(190deg)
+    brightness(95%) contrast(90%);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .aboutStackGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .aboutCard {
+    padding: 24px;
+  }
+}

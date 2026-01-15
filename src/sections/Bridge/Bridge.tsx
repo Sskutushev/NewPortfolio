@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, cubicBezier } from 'framer-motion';
 import { Layers, Zap, Code } from 'lucide-react';
 import './Bridge.module.css';
 
@@ -42,7 +42,7 @@ const Bridge: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1.0],
+        ease: cubicBezier(0.25, 0.1, 0.25, 1.0),
       },
     },
     whileHover: {
@@ -50,7 +50,7 @@ const Bridge: React.FC = () => {
       boxShadow: 'var(--shadow-lg)',
       transition: {
         duration: 0.3,
-        ease: [0.25, 0.1, 0.25, 1.0],
+        ease: cubicBezier(0.25, 0.1, 0.25, 1.0),
       },
     },
   };

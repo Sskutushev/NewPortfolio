@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; // Import motion and AnimatePresence
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import styles from './Header.module.css';
 
@@ -27,7 +28,6 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, currentTheme }) => {
 
   const navLinks = [
     { name: 'Обо мне', href: '#about' },
-    { name: 'Стек', href: '#stack' },
     { name: 'Портфолио', href: '#portfolio' },
     { name: 'Контакты', href: '#contact' },
   ];
@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, currentTheme }) => {
               aria-pressed={currentTheme === 'dark'}
             >
               {currentTheme === 'dark' ? (
-                <Sun size={20} color="#3A6DC2" />
+                <Sun size={20} color="black" />
               ) : (
                 <Moon size={20} color="#3A6DC2" />
               )}
@@ -119,86 +119,94 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, currentTheme }) => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className={styles.mobileMenuOverlay}>
-          <div className={styles.mobileMenuContent}>
-            <button
-              className={styles.closeMenu}
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Закрыть меню"
-            >
-              <X size={24} />
-            </button>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className={styles.mobileMenuOverlay}
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          >
+            <div className={styles.mobileMenuContent}>
+              <button
+                className={styles.closeMenu}
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Закрыть меню"
+              >
+                <X size={24} />
+              </button>
 
-            <nav className={styles.mobileNav}>
-              <ul className={styles.mobileNavList}>
-                {navLinks.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className={styles.mobileNavLink}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <nav className={styles.mobileNav}>
+                <ul className={styles.mobileNavList}>
+                  {navLinks.map((link, index) => (
+                    <li key={index}>
+                      <a
+                        href={link.href}
+                        className={styles.mobileNavLink}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Actions at the bottom */}
-              <div className={styles.mobileMenuActions}>
-                <button
-                  className={`${styles.btnResume} ${styles.mobileResumeBtn}`}
-                  onClick={() => {
-                    window.open('/resume.pdf', '_blank');
-                    setIsMenuOpen(false);
-                  }}
-                >
-                  Резюме
-                </button>
+                {/* Actions at the bottom */}
+                <div className={styles.mobileMenuActions}>
+                  <button
+                    className={`${styles.btnResume} ${styles.mobileResumeBtn}`}
+                    onClick={() => {
+                      window.open('/resume.pdf', '_blank');
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Резюме
+                  </button>
 
-                <div className={styles.mobileThemeLang}>
-                  <div className={styles.themeToggleContainer}>
-                    <button
-                      className={styles.themeToggle}
-                      onClick={onThemeToggle}
-                      aria-label={
-                        currentTheme === 'dark'
-                          ? 'Переключить на светлую тему'
-                          : 'Переключить на темную тему'
-                      }
-                      aria-pressed={currentTheme === 'dark'}
-                    >
-                      {currentTheme === 'dark' ? (
-                        <Sun size={20} color="#3A6DC2" />
-                      ) : (
-                        <Moon size={20} color="#3A6DC2" />
-                      )}
-                    </button>
-                  </div>
-                  {/* Language Toggle (Mobile) */}
-                  <div className={styles.langToggleContainer}>
-                    <button
-                      className={styles.langToggle}
-                      onClick={toggleLanguage}
-                      aria-label={`Переключить на ${currentLang === 'ru' ? 'английский' : 'русский'} язык`}
-                    >
-                      <img
-                        src={currentLang === 'ru' ? '/RU.svg' : '/EN.svg'}
-                        alt={
-                          currentLang === 'ru'
-                            ? 'Русский флаг'
-                            : 'Английский флаг'
+                  <div className={styles.mobileThemeLang}>
+                    <div className={styles.themeToggleContainer}>
+                      <button
+                        className={styles.themeToggle}
+                        onClick={onThemeToggle}
+                        aria-label={
+                          currentTheme === 'dark'
+                            ? 'Переключить на светлую тему'
+                            : 'Переключить на темную тему'
                         }
-                      />
-                    </button>
+                        aria-pressed={currentTheme === 'dark'}
+                      >
+                        {currentTheme === 'dark' ? (
+                          <Sun size={20} color="black" />
+                        ) : (
+                          <Moon size={20} color="#3A6DC2" />
+                        )}
+                      </button>
+                    </div>
+                    {/* Language Toggle (Mobile) */}
+                    <div className={styles.langToggleContainer}>
+                      <button
+                        className={styles.langToggle}
+                        onClick={toggleLanguage}
+                        aria-label={`Переключить на ${currentLang === 'ru' ? 'английский' : 'русский'} язык`}
+                      >
+                        <img
+                          src={currentLang === 'ru' ? '/RU.svg' : '/EN.svg'}
+                          alt={
+                            currentLang === 'ru'
+                              ? 'Русский флаг'
+                              : 'Английский флаг'
+                          }
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </nav>
-          </div>
-        </div>
-      )}
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

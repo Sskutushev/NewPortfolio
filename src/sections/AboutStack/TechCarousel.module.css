@@ -1,0 +1,146 @@
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.techCard {
+  width: 100%;
+  max-width: 400px;
+  height: 280px;
+  background: #ffffff;
+  border: 1px solid rgba(58, 109, 194, 0.8);
+  border-radius: 20px;
+  padding: 20px !important;
+  box-shadow: 15px 15px 50px 5px rgba(143, 186, 255, 1);
+  margin-bottom: 32px;
+  position: relative; /* For pseudo-element positioning */
+  overflow: hidden; /* To contain the blurred edges */
+}
+
+
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative; /* Ensure content is above the background */
+  z-index: 1;
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(58, 109, 194, 0.1);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jsIcon {
+  background-image: url('/JS.png');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; /* Override default background */
+}
+
+.tsIcon {
+  background-image: url('/TS.png');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.reactIcon {
+  background-image: url('/React+Next.svg');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.nodejsIcon {
+  background-image: url('/Node.js.svg');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.stylesIcon {
+  background-image: url('/Tailwind.svg');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.web3Icon {
+  background-image: url('/web3.svg');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  margin-left: 25px !important;
+}
+
+.cardDescription {
+  margin-top: 30px !important;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-align: left;
+  position: relative; /* Ensure content is above the background */
+  z-index: 1;
+}
+
+/* INDICATORS */
+.indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background: rgba(58, 109, 194, 0.3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: rgba(58, 109, 194, 0.5);
+}
+
+.indicatorActive {
+  background: #3a6dc2;
+  width: 32px;
+  border-radius: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .techCard {
+    padding: 32px 24px;
+  }
+
+  .cardTitle {
+    font-size: 24px;
+  }
+
+  .cardDescription {
+    font-size: 14px;
+  }
+}

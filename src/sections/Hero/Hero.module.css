@@ -84,6 +84,7 @@
 
 .heroLeft {
   margin-top: -350px !important;
+  margin-left: -40px !important;
   display: flex !important;
   flex-direction: column !important;
   gap: var(--space-6) !important;
@@ -95,7 +96,7 @@
   font-size: 50px !important;
   font-weight: 700 !important;
   line-height: 1.18 !important;
-  color: var(--text-primary) !important;
+  color: rgba(26, 26, 26, 0.75) !important;
   margin-bottom: var(--space-1) !important;
   text-align: left !important;
   width: 900px !important;
@@ -112,7 +113,7 @@
   background: var(--accent-blue) !important;
   color: white !important;
   padding: 14px 32px !important;
-  border-radius: var(--radius-xl) !important;
+  border-radius: 90px !important;
   font-size: var(--text-base) !important;
   font-weight: 600 !important;
   border: none !important;

@@ -13,14 +13,13 @@
   height: 60px !important;
   z-index: 100 !important;
   transition: box-shadow 0.3s ease !important;
-  background-color: transparent !important; /* Make header transparent */
-  border: none !important; /* Remove original border */
+  background-color: transparent !important;
+  border: none !important;
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
-  overflow: hidden; /* Needed to contain the pseudo-element */
+  overflow: hidden;
 }
 
-/* New pseudo-element for the background */
 .header::before {
   content: '';
   position: absolute;
@@ -34,10 +33,10 @@
     #3a6dc2 95%,
     #3a6dc2 100%
   ) !important;
-  background-size: 200% 200% !important; /* For shimmer animation */
+  background-size: 200% 200% !important;
   animation: shimmer 5s ease infinite alternate !important;
-  opacity: 0.4 !important; /* 20% opacity */
-  z-index: -1; /* Place it behind the content */
+  opacity: 0.2 !important;
+  z-index: -1;
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
 }
@@ -61,21 +60,19 @@
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  margin-left: 50px !important;
 }
 
-/* LOGO STYLES */
 .logoCircle {
   width: 35px !important;
   height: 35px !important;
-  background: #3a6dc2 !important;
+  background: #3A6DC2 !important;
   border-radius: 90px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   font-family: 'Open Sans', sans-serif !important;
   font-size: 10px !important;
-  font-weight: 700 !important; /* Bold */
+  font-weight: 700 !important;
   color: white !important;
 }
 
@@ -92,18 +89,17 @@
   padding: 0 !important;
 }
 
-/* NAV LINK STYLES */
 .navLink {
   font-family: 'Open Sans', sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 600 !important; /* Regular */
-  color: #1a1a1a !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: #1A1A1A !important;
   text-decoration: none !important;
   transition: color 0.3s ease !important;
 }
 
 .navLink:hover {
-  color: #3a6dc2 !important;
+  color: #3A6DC2 !important;
 }
 
 .headerActions {
@@ -112,21 +108,20 @@
   gap: 16px !important;
 }
 
-/* RESUME BUTTON STYLES */
 .btnResume {
   background: white !important;
-  border: 1px solid #3a6dc2 !important;
-  color: #3a6dc2 !important;
+  border: 1px solid #3A6DC2 !important;
+  color: #3A6DC2 !important;
   padding: 8px 20px !important;
   border-radius: 20px !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
 }
 
 .btnResume:hover {
-  background: #3a6dc2 !important;
+  background: #3A6DC2 !important;
   color: white !important;
   transform: translateY(-1px) !important;
   box-shadow: var(--shadow-button) !important;
@@ -136,8 +131,8 @@
   width: 35px !important;
   height: 35px !important;
   border-radius: 90px !important;
-  background-color: white !important;
-  border: 1px solid #3a6dc2 !important;
+  border: 1px solid #3A6DC2 !important;
+  background: none !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -152,17 +147,11 @@
   justify-content: center !important;
 }
 
-.flagRussia {
-  width: 24px !important;
-  margin-right: 50px !important;
-}
-
 .menuToggle {
   display: none !important;
   background: none !important;
   border: none !important;
   cursor: pointer !important;
-  color: var(--text-primary) !important;
   padding: var(--space-1) !important;
   border-radius: 50% !important;
   transition: background-color 0.3s ease !important;
@@ -172,28 +161,23 @@
   background: var(--bg-secondary) !important;
 }
 
-/* Mobile menu overlay */
 .mobileMenuOverlay {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   height: 100vh !important;
-  background: rgba(0, 0, 0, 0.8) !important;
+  background: rgba(255, 255, 255, 0.8) !important; /* Lighter overlay */
   backdrop-filter: blur(10px) !important;
   z-index: 999 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  animation: fadeIn 0.3s ease !important;
 }
 
 .mobileMenuContent {
   position: relative !important;
-  width: 90% !important;
-  max-width: 400px !important;
+  width: 100% !important;
+  max-width: 100% !important;
   background: var(--bg-primary) !important;
-  border-radius: var(--radius-lg) !important;
+  border-radius: 0 !important;
   padding: var(--space-8) var(--space-4) var(--space-4) !important;
   box-shadow: var(--shadow-lg) !important;
 }
@@ -235,7 +219,7 @@
 }
 
 .mobileNavLink:hover {
-  color: #3a6dc2 !important;
+  color: #3A6DC2 !important;
   background: var(--bg-secondary) !important;
 }
 
@@ -264,12 +248,12 @@
   width: 35px !important;
   height: 35px !important;
   border-radius: 90px !important;
-  border: 1px solid #3a6dc2 !important;
+  border: 1px solid #3A6DC2 !important;
   background: none !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  overflow: hidden !important; /* Ensure image is contained */
+  overflow: hidden !important;
 }
 
 .langToggle {
@@ -279,7 +263,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 !important; /* Remove padding */
+  padding: 0 !important;
   width: 100% !important;
   height: 100% !important;
 }
@@ -287,10 +271,9 @@
 .langToggle img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Image fills the container */
+  object-fit: cover !important;
 }
 
-/* Responsive styles */
 @media (min-width: 769px) {
   .menuToggle {
     display: none !important;
@@ -300,16 +283,27 @@
 @media (max-width: 768px) {
   .navDesktop,
   .headerActions .btnResume,
-  .headerActions .themeToggle,
-  .headerActions .flagRussia {
+  .headerActions .themeToggleContainer,
+  .headerActions .langToggleContainer {
     display: none !important;
   }
 
   .menuToggle {
     display: block !important;
+    color: white !important; /* Burger icon color */
+  }
+  
+  .headerContent {
+    justify-content: space-between !important;
+    padding: 0 50px !important; /* Use padding for spacing */
+  }
+
+  .logo {
+    margin-left: 0 !important; /* Remove margin */
   }
 
   .headerActions {
-    gap: 8px !important;
+    gap: 0 !important;
+    margin-right: 0 !important; /* Remove margin */
   }
 }

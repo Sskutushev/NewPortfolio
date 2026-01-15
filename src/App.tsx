@@ -2,8 +2,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 import Header from './components/Header/Header';
 import Hero from './sections/Hero/Hero';
-import About from './sections/About/About';
-import Stack from './sections/Stack/Stack';
+import AboutStack from './sections/AboutStack/AboutStack';
 import Portfolio from './sections/Portfolio/Portfolio';
 import ContactSection from './sections/Contact/Contact';
 import './styles/globals.css';
@@ -29,8 +28,7 @@ function App() {
         <Header onThemeToggle={toggleTheme} currentTheme={theme} />
         <main>
           <Hero />
-          <About />
-          <Stack />
+          <AboutStack />
           <Portfolio />
           <ContactSection />
         </main>
