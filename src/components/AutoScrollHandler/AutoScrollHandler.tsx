@@ -47,25 +47,34 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
   };
 
   // Прокрутка к секции
-  const scrollToSection = (index: number) => {
-    if (index < 0 || index >= sectionsRef.current.length || isAutoScrolling || isMobileRef.current) return;
+  const scrollToSection = useCallback(
+    (index: number) => {
+      if (
+        index < 0 ||
+        index >= sectionsRef.current.length ||
+        isAutoScrolling ||
+        isMobileRef.current
+      )
+        return;
 
-    const section = sectionsRef.current[index];
-    if (!section) return;
+      const section = sectionsRef.current[index];
+      if (!section) return;
 
-    setIsAutoScrolling(true);
-    currentIndexRef.current = index;
+      setIsAutoScrolling(true);
+      currentIndexRef.current = index;
 
-    section.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+      section.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
 
-    // Сброс состояния автопрокрутки после завершения анимации
-    setTimeout(() => {
-      setIsAutoScrolling(false);
-    }, 1000); // Примерное время анимации
-  };
+      // Сброс состояния автопрокрутки после завершения анимации
+      setTimeout(() => {
+        setIsAutoScrolling(false);
+      }, 1000); // Примерное время анимации
+    },
+    [isAutoScrolling]
+  );
 
   // Обработка прокрутки
   const handleScroll = React.useCallback(() => {
@@ -80,7 +89,8 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
     scrollThresholdRef.current += scrollDelta;
 
     // Если пользователь прокручивает слишком мало, не активируем автоскролл
-    if (scrollThresholdRef.current < 50) { // Минимальный порог 50px
+    if (scrollThresholdRef.current < 50) {
+      // Минимальный порог 50px
       // Сброс таймера, если он был
       if (scrollTimerRef.current) {
         clearTimeout(scrollTimerRef.current);
@@ -97,13 +107,17 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
 
       requestAnimationFrame(() => {
         // Определяем направление прокрутки
-        const scrollDirection = currentScrollY > lastScrollYRef.current ? 'down' : 'up';
+        const scrollDirection =
+          currentScrollY > lastScrollYRef.current ? 'down' : 'up';
 
         // Определяем целевую секцию в зависимости от направления прокрутки
         let targetIndex = currentIndexRef.current;
 
         if (scrollDirection === 'down') {
-          targetIndex = Math.min(currentIndexRef.current + 1, sectionsRef.current.length - 1);
+          targetIndex = Math.min(
+            currentIndexRef.current + 1,
+            sectionsRef.current.length - 1
+          );
         } else {
           targetIndex = Math.max(currentIndexRef.current - 1, 0);
         }
@@ -118,12 +132,26 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
         tickingRef.current = false;
       });
     }
-  }, [isAutoScrolling]);
+  }, [isAutoScrolling, scrollToSection]);
+
+  // Добавляем и удаляем обработчик прокрутки
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: false });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimerRef.current) {
+        clearTimeout(scrollTimerRef.current);
+      }
+    };
+  }, [handleScroll]);
 
   // Инициализация секций при монтировании
   useEffect(() => {
     // Найдем все секции на странице
-    sectionsRef.current = Array.from(document.querySelectorAll('[data-auto-scroll-section]'));
+    sectionsRef.current = Array.from(
+      document.querySelectorAll('[data-auto-scroll-section]')
+    );
 
     // Установим начальный индекс текущей секции
     const currentSectionIndex = getCurrentSectionIndex();

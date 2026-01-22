@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../hooks/useThemeHook';
 import { motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -15,7 +15,9 @@ const ThemeAwareHeader: React.FC = () => {
   };
 
   return (
-    <header className={`${styles.header} ${isMenuOpen ? styles.headerOpen : ''}`}>
+    <header
+      className={`${styles.header} ${isMenuOpen ? styles.headerOpen : ''}`}
+    >
       <button
         className={styles.menuButton}
         onClick={toggleMenu}
@@ -24,7 +26,9 @@ const ThemeAwareHeader: React.FC = () => {
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : styles.navClosed}`}>
+      <nav
+        className={`${styles.nav} ${isMenuOpen ? styles.navOpen : styles.navClosed}`}
+      >
         <Link
           to="/"
           className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
@@ -33,7 +37,7 @@ const ThemeAwareHeader: React.FC = () => {
               e.preventDefault();
               window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: 'smooth',
               });
             }
             setIsMenuOpen(false); // Закрыть меню после клика
@@ -75,13 +79,11 @@ const ThemeAwareHeader: React.FC = () => {
         onClick={toggleTheme}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+        aria-label={
+          theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+        }
       >
-        {theme === 'dark' ? (
-          <Sun size={20} />
-        ) : (
-          <Moon size={20} />
-        )}
+        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
       </motion.button>
 
       {/* Skip to main content link for accessibility */}

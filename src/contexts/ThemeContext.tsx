@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import { useStoredTheme } from '../hooks/useStoredTheme';
 
 interface ThemeContextType {
   theme: 'light' | 'dark';
@@ -7,23 +8,9 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const useStoredTheme = (): [string | null, (theme: string) => void] => {
-  const [storedTheme, setStoredTheme] = useState<string | null>(null);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme');
-    setStoredTheme(saved);
-  }, []);
-
-  const saveTheme = (theme: string) => {
-    localStorage.setItem('theme', theme);
-    setStoredTheme(theme);
-  };
-
-  return [storedTheme, saveTheme];
-};
-
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [storedTheme, saveTheme] = useStoredTheme();
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -41,7 +28,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [theme, saveTheme]);
 
   const toggleTheme = () => {
-    setTheme(prev => {
+    setTheme((prev) => {
       const newTheme = prev === 'dark' ? 'light' : 'dark';
       return newTheme;
     });
@@ -54,10 +41,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
+export { ThemeContext };
