@@ -259,3 +259,13 @@
 [data-theme='dark'] .floatingImage {
   filter: invert(1); /* Делаем изображение белым */
 }
+
+/* Специфичный стиль для иконки Next.js на темной теме - делаем её белой */
+[data-theme='dark'] .techItem img[src='/images/next.js.svg'] {
+  filter: invert(1);
+}
+
+/* Специфичный стиль для иконки Framer Motion на темной теме - делаем её белой */
+[data-theme='dark'] .techItem img[src='/images/framer.svg'] {
+  filter: invert(1);
+}
