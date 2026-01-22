@@ -1,55 +1,99 @@
 import React from 'react';
-import type { Project } from '../../data/projects';
-import './ProjectCard.module.css';
+import { motion } from 'framer-motion';
+import { Code, ArrowRight } from 'lucide-react';
+import styles from './ProjectCard.module.css';
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  tech: string;
+  metrics: {
+    label: string;
+    value: string;
+  };
+  image: string;
+}
 
 interface ProjectCardProps {
   project: Project;
   onClick?: () => void;
+  delay?: number;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  onClick,
+  delay = 0
+}) => {
+  const handleClick = () => {
+    onClick?.();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
-    <div className="project-card" onClick={onClick}>
-      <div className="project-image">
-        <img
-          src={
-            project.image ||
-            'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250"><rect width="400" height="250" fill="%23e2e8f0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="%23718096">Project Image</text></svg>'
-          }
-          alt={project.title}
-          onError={(e) => {
-            // Fallback if image doesn't load
-            e.currentTarget.src =
-              'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250"><rect width="400" height="250" fill="%23e2e8f0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="%23718096">Project Image</text></svg>';
-          }}
-        />
-        <div className="image-overlay"></div>
+    <motion.div
+      className={styles.projectCard}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: delay }}
+      whileHover={{ y: -10 }}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={`Открыть проект ${project.title}`}
+      whileHover={{
+        scale: 1.05,
+        y: -12,
+        zIndex: 10,
+        rotate: 0  // При hover карточка выравнивается
+      }}
+    >
+      {/* Изображение проекта */}
+      <div className={styles.projectImage}>
+        <img src={project.image} alt={project.title} />
+
+        {/* Gradient overlay */}
+        <div className={styles.imageGradient} />
+
+        {/* Иконка кода */}
+        <motion.div
+          className={styles.codeIcon}
+          whileHover={{ rotate: 360 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Code size={20} />
+        </motion.div>
       </div>
 
-      <div className="project-content">
-        <span className="project-category">{project.category}</span>
-        <h3 className="project-title">{project.title}</h3>
-        <p className="project-desc">{project.description}</p>
+      {/* Контент карточки */}
+      <div className={styles.cardContent}>
+        {/* Категория badge */}
+        <span className={styles.categoryBadge}>{project.category}</span>
 
-        <div className="project-tech">
-          {project.tech.map((tech, index) => (
-            <span key={index}>{tech}</span>
-          ))}
-        </div>
+        {/* Заголовок */}
+        <h3>{project.title}</h3>
 
-        <div className="project-actions">
-          <button className="btn-details">Подробнее →</button>
-          <a
-            href={project.liveUrl}
-            className="btn-demo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Live Demo ↗
-          </a>
+        {/* Технологии */}
+        <p className={styles.techStack}>{project.tech}</p>
+
+        {/* Метрики */}
+        <div className={styles.cardFooter}>
+          <div className={styles.metrics}>
+            <span className={styles.metricLabel}>{project.metrics.label}</span>
+            <span className={styles.metricValue}>{project.metrics.value}</span>
+          </div>
+          <ArrowRight className={styles.arrowIcon} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

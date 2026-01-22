@@ -1,146 +1,179 @@
 .portfolioSection {
-  position: relative !important;
-  height: 100vh !important;
-  min-height: 100vh !important;
-  padding: 96px 0 !important;
-  overflow: hidden !important;
-  background-color: var(--bg-primary) !important;
-  display: flex !important;
-  align-items: center !important;
+  margin-top: -50px;
+  padding: 150px 0; /* Увеличенные отступы сверху и снизу для десктопа */
+  position: relative;
+  width: 100%;
 }
 
-.portfolioRainbow {
-  position: relative !important;
-  height: 600px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin-bottom: 48px !important;
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 var(--space-4) !important;
+/* Фоновое изображение с размытием и зеркальным эффектом */
+.portfolioSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    url('/background2-3.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(5px); 
+  z-index: -2; 
 }
 
-.projectCardRainbow {
-  position: absolute !important;
-  width: 320px !important;
-  height: 400px !important;
-  background: var(--bg-card) !important;
-  border: 1px solid var(--border-card) !important;
-  border-radius: var(--radius-xl) !important;
-  box-shadow: var(--shadow-card) !important;
-  padding: 32px 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  cursor: pointer !important;
+.sectionHeader {
+  text-align: center;
+  margin-bottom: -80px;
 }
 
-.cardIcon {
-  width: 80px !important;
-  height: 80px !important;
-  background: var(--accent-blue) !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 40px !important;
-  margin-bottom: 24px !important;
+.sectionHeader h2 {
+  font-size: var(--text-3xl);
+  margin-bottom: 16px;
+  color: var(--text-primary);
 }
 
-.projectCardRainbow h4 {
-  font-size: 20px !important;
-  font-weight: 600 !important;
-  color: var(--text-primary) !important;
-  margin-bottom: 8px !important;
+.sectionHeader p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.projectCardRainbow p {
-  font-size: 14px !important;
-  color: var(--text-secondary) !important;
+.portfolioFan {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 0;
+  overflow: visible;
 }
 
-.btnViewAll {
-  display: block !important;
-  margin: 0 auto !important;
-  background: var(--accent-blue) !important;
-  color: white !important;
-  padding: 14px 32px !important;
-  border-radius: var(--radius-md) !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  border: none !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
+.projectCardWrapper {
+  position: absolute;
+  /* Позиции задаются через getFanPosition */
 }
 
-.btnViewAll:hover {
-  background: #2563eb !important;
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-button) !important;
-}
-
-/* Responsive styles */
+/* Mobile - horizontal scroll */
 @media (max-width: 768px) {
-  .portfolioSection {
-    padding: 64px 0 !important;
+  .portfolioFan {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 10px; /* Уменьшенный зазор между карточками */
+    padding: 20px 0;
+    margin: 40px 0;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 
-  .portfolioRainbow {
-    height: auto !important;
-    min-height: 600px !important;
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    grid-template-rows: repeat(5, 1fr) !important;
-    gap: 24px !important;
-    margin-bottom: 32px !important;
+  .portfolioFan::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
   }
 
-  .projectCardRainbow {
+  .projectCardWrapper {
     position: relative !important;
-    width: 100% !important;
-    max-width: 350px !important;
-    height: 200px !important;
-    margin: 0 auto !important;
-    transform: none !important;
-    x: 0 !important;
-    y: 0 !important;
-    rotate: 0 !important;
-    scale: 1 !important;
-  }
-
-  .cardIcon {
-    width: 60px !important;
-    height: 60px !important;
-    font-size: 30px !important;
-  }
-
-  .btnViewAll {
-    padding: 12px 24px !important;
-    font-size: 14px !important;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 }
 
+.viewAllBtn {
+  display: block;
+  margin: -40px auto 0;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  max-width: 200px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewAllBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .portfolioSection {
+    padding: 120px 0; /* Увеличенные отступы для планшета */
+  }
+
+  .portfolioFan {
+    height: 500px;
+  }
+
+  /* Уменьшить расстояния между карточками */
+  .projectCardWrapper {
+    /* Will be positioned via JavaScript */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .portfolioFan {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 10px; /* Уменьшенный зазор между карточками */
+    padding: 20px 0;
+    margin: 40px auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .portfolioFan::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+
+  .projectCardWrapper {
+    position: relative !important;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 320px !important; /* Ширина карточки 320px */
+    max-width: 320px; /* Максимальная ширина */
+    margin: 0 auto; /* Центрирование */
+    /* Сбросить все трансформации */
+    transform: none !important;
+  }
+
+  .sectionHeader {
+    margin-bottom: 40px;
+  }
+
+  .viewAllBtn {
+    margin-top: 40px;
+  }
+}
+
+/* Mobile small */
 @media (max-width: 480px) {
-  .projectCardRainbow {
-    max-width: 100% !important;
-    padding: 24px 16px !important;
+  .sectionHeader {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .cardIcon {
-    width: 50px !important;
-    height: 50px !important;
-    font-size: 24px !important;
-  }
-
-  .projectCardRainbow h4 {
-    font-size: 18px !important;
-  }
-
-  .projectCardRainbow p {
-    font-size: 12px !important;
+  .viewAllBtn {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

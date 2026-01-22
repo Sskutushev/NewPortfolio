@@ -1,84 +1,221 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import ProjectCard from '../../components/ProjectCard/ProjectCard';
+import ProjectModal from '../../components/ProjectModal/ProjectModal';
+import { Link } from 'react-router-dom';
 import styles from './Portfolio.module.css';
 
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  tech: string;
+  metrics: {
+    label: string;
+    value: string;
+  };
+  image: string;
+  flow: {
+    input: string;
+    process: string;
+    output: string;
+  };
+  codeHighlight: {
+    title: string;
+    code: string;
+  };
+}
+
 const Portfolio: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-150px' });
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const projects = [
-    { title: 'Web3 & Fintech', category: 'DeFi', icon: '🌐' },
-    { title: 'E-commerce', category: 'Marketplace', icon: '🛒' },
-    { title: 'Productivity', category: 'SaaS', icon: '📊' },
-    { title: 'Social Media', category: 'Platform', icon: '💬' },
-    { title: 'Analytics', category: 'Dashboard', icon: '📈' },
+  // Featured projects for the fan layout
+  const featuredProjects = [
+    {
+      id: 16,
+      title: 'NFT Marketplace',
+      category: 'Web3',
+      tech: 'React, Solidity, Web3.js',
+      metrics: { label: 'Transactions', value: '1.2K+' },
+      image: '/project-nft.jpg',
+      flow: {
+        input: 'User connects wallet and browses NFTs',
+        process: 'Smart contracts handle minting and trading',
+        output: 'Secure NFT transactions with low fees'
+      },
+      codeHighlight: {
+        title: 'Smart Contract Integration',
+        code: `const contract = new ethers.Contract(address, abi, signer);\n\nconst mintNFT = async (uri) => {\n  const tx = await contract.mint(uri);\n  await tx.wait();\n};`
+      }
+    },
+    {
+      id: 9,
+      title: 'Lumi',
+      category: 'Fintech',
+      tech: 'React, Node.js, PostgreSQL',
+      metrics: { label: 'Users', value: '5K+' },
+      image: '/project-lumi.jpg',
+      flow: {
+        input: 'User enters financial data',
+        process: 'AI analyzes spending patterns',
+        output: 'Personalized budget recommendations'
+      },
+      codeHighlight: {
+        title: 'Financial Data Processing',
+        code: `const calculateBudget = (income, expenses) => {\n  const remaining = income - expenses.total;\n  const allocation = {};\n  \n  Object.keys(expenses).forEach(category => {\n    allocation[category] = expenses[category] / income;\n  });\n  \n  return { remaining, allocation };\n};`
+      }
+    },
+    {
+      id: 3,
+      title: 'AIBRO',
+      category: 'AI',
+      tech: 'React, TensorFlow.js, Python',
+      metrics: { label: 'Models', value: '15+' },
+      image: '/project-aibro.jpg',
+      flow: {
+        input: 'User uploads data for analysis',
+        process: 'AI models process and analyze data',
+        output: 'Actionable insights and predictions'
+      },
+      codeHighlight: {
+        title: 'AI Model Prediction',
+        code: `const predict = async (inputData) => {\n  const tensor = tf.tensor(inputData);\n  const prediction = model.predict(tensor);\n  const result = await prediction.data();\n  \n  return result;\n};`
+      }
+    },
+    {
+      id: 5,
+      title: 'Portfolio',
+      category: 'Web',
+      tech: 'React, TypeScript, Framer Motion',
+      metrics: { label: 'Views', value: '10K+' },
+      image: '/project-portfolio.jpg',
+      flow: {
+        input: 'Visitor accesses portfolio site',
+        process: 'Animations and transitions engage user',
+        output: 'Professional showcase of skills'
+      },
+      codeHighlight: {
+        title: 'Smooth Animations',
+        code: `const containerVariants = {\n  hidden: { opacity: 0 },\n  visible: {\n    opacity: 1,\n    transition: {\n      staggerChildren: 0.1\n    }\n  }\n};`
+      }
+    },
+    {
+      id: 11,
+      title: 'Yokai',
+      category: 'Gaming',
+      tech: 'React, Phaser.js, Socket.io',
+      metrics: { label: 'Players', value: '2K+' },
+      image: '/project-yokai.jpg',
+      flow: {
+        input: 'Player joins multiplayer game',
+        process: 'Real-time game state synchronization',
+        output: 'Seamless gaming experience'
+      },
+      codeHighlight: {
+        title: 'Real-time Game Sync',
+        code: `socket.on('gameState', (state) => {\n  updateGameObjects(state.entities);\n  render();\n});\n\nconst syncState = () => {\n  socket.emit('playerMove', player.position);\n};`
+      }
+    }
   ];
 
-  const cardPositions = [
-    { x: -500, y: 120, rotate: -15, scale: 0.95 }, // Крайняя левая
-    { x: -250, y: 40, rotate: -7, scale: 0.98 }, // Левая
-    { x: 0, y: 0, rotate: 0, scale: 1 }, // Центральная
-    { x: 250, y: 40, rotate: 7, scale: 0.98 }, // Правая
-    { x: 500, y: 120, rotate: 15, scale: 0.95 }, // Крайняя правая
-  ];
+  // Position calculation for fan layout
+  const getFanPosition = (index: number) => {
+    const positions = [
+      // Left-2 (NFT Marketplace)
+      { x: -450, y: 100, rotate: -12, scale: 0.92, zIndex: 1 },
+      // Left-1 (Lumi)
+      { x: -230, y: 50, rotate: -6, scale: 0.96, zIndex: 2 },
+      // Center (AIBRO)
+      { x: 0, y: 0, rotate: 0, scale: 1, zIndex: 3 },
+      // Right-1 (Portfolio)
+      { x: 230, y: 50, rotate: 6, scale: 0.96, zIndex: 2 },
+      // Right-2 (Yokai)
+      { x: 450, y: 100, rotate: 12, scale: 0.92, zIndex: 1 },
+    ];
+
+    return positions[index];
+  };
+
+  interface Position {
+    x: number;
+    y: number;
+    rotate: number;
+    scale: number;
+    zIndex: number;
+  }
+
+  const cardVariants = (position: Position) => ({
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 100
+    },
+    visible: {
+      opacity: 1,
+      scale: position.scale,
+      x: position.x,
+      y: position.y,
+      rotate: position.rotate,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  });
 
   return (
-    <section ref={ref} className={styles.portfolioSection} id="portfolio">
+    <section className={styles.portfolioSection} id="portfolio" data-auto-scroll-section aria-labelledby="portfolio-heading">
       <div className="container">
-        <h2 className="sectionTitle">Портфолио</h2>
+        {/* Заголовок */}
+        <motion.div className={styles.sectionHeader} id="portfolio-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h2>Портфолио</h2>
+          <p>Реализованные проекты, демонстрирующие мой подход к разработке</p>
+        </motion.div>
 
-        <div className={styles.portfolioRainbow}>
-          {projects.map((project, i) => (
-            <motion.div
-              key={i}
-              className={styles.projectCardRainbow}
-              initial={{ opacity: 0, scale: 0.8, y: 100 }}
-              animate={
-                isInView
-                  ? i === 2 // Центральная карточка
-                    ? {
-                        opacity: 1,
-                        scale: 1,
-                        y: 0,
-                        x: 0,
-                        rotate: 0,
-                      }
-                    : {
-                        opacity: 1,
-                        scale: cardPositions[i].scale,
-                        x: cardPositions[i].x,
-                        y: cardPositions[i].y,
-                        rotate: cardPositions[i].rotate,
-                      }
-                  : {}
-              }
-              transition={{
-                duration: i === 2 ? 0.6 : 0.8,
-                delay: i === 2 ? 0 : 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{
-                scale: 1.05,
-                y: -12,
-                zIndex: 10,
-                transition: { duration: 0.3 },
-              }}
-            >
-              <div className={styles.cardIcon}>{project.icon}</div>
-              <h4>{project.title}</h4>
-              <p>{project.category}</p>
-            </motion.div>
-          ))}
+        {/* Контейнер веера */}
+        <div className={styles.portfolioFan} aria-label="Избранные проекты в виде веера">
+          {featuredProjects.map((project, index) => {
+            const position = getFanPosition(index);
+            return (
+              <motion.div
+                key={project.id}
+                className={styles.projectCardWrapper}
+                variants={cardVariants(position)}
+                initial="hidden"
+                animate="visible"
+                style={{
+                  position: 'absolute',
+                  ...position
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  y: position.y - 12,
+                  zIndex: 10,
+                  rotate: 0  // При hover карточка выравнивается
+                }}
+                aria-label={`Проект ${project.title}`}
+              >
+                <ProjectCard
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              </motion.div>
+            );
+          })}
         </div>
 
-        <motion.button
-          className={styles.btnViewAll}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Смотреть все
-        </motion.button>
+        {/* Кнопка "Все проекты" */}
+        <Link to="/portfolio" className={styles.viewAllBtn} aria-label="Перейти ко всем проектам">
+          Все проекты
+        </Link>
+
+        {/* Modal */}
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
       </div>
     </section>
   );

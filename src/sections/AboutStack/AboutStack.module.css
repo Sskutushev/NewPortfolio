@@ -1,182 +1,261 @@
-.aboutStackSection {
+.aboutSection {
   position: relative;
-  min-height: 100vh;
-  padding: var(--space-12) 0;
-  background: linear-gradient(
-    to top,
-    rgba(254, 254, 255, 0.1) 0%,
-    rgba(143, 186, 255, 0.15) 35%,
-    rgba(120, 171, 255, 0.18) 45%,
-    rgba(70, 138, 248, 0.20) 70%,
-    rgba(87, 151, 255, 0.25) 85%,
-    rgba(39, 122, 255, 0.25) 100%
-  );
-  display: flex;
-  align-items: center;
-}
-
-.aboutStackGrid {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: var(--space-6);
-  align-items: start;
+  padding: 150px 0; /* Увеличенные отступы сверху и снизу для десктопа */
+  background: var(--bg-secondary);
+  overflow: hidden;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--space-4);
+  box-sizing: border-box;
+  margin: 0;
 }
 
-/* LEFT COLUMN */
-.leftColumn {
-  margin-left: -40px !important;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+.aboutSection::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+  filter: blur(80px);
+  pointer-events: none;
 }
 
-.sectionTitle {
-  font-size: 45px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.75);
-  margin-bottom: 12px;
-  line-height: 1.1;
+/* Светлая тема */
+[data-theme='light'] .aboutSection::before {
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.08), transparent);
 }
 
-.subtitle {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.1;
-  color: rgba(26, 26, 26, 0.75);
-  margin-bottom: 55px !important;
+/* Темная тема */
+[data-theme='dark'] .aboutSection::before {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
 }
 
-.aboutCard {
-  width: 620px !important;
-  height: 280px;
-  background: #ffffff;
-  border: 1px solid rgba(58, 109, 194, 0.8);
-  border-radius: 20px;
-  padding: 20px !important;
-  box-shadow: 15px 15px 50px 5px rgba(143, 186, 255, 1);
-  box-sizing: border-box; 
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.aboutText {
-  font-size: 14px;
-  line-height: 1.2;
+/* Glass-morphism cards */
+.glassCard {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glassCard:hover {
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 8px 32px rgba(20, 184, 166, 0.15);
+}
+
+/* Dark theme glass card */
+[data-theme='dark'] .glassCard {
+  background: rgba(18, 20, 26, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .glassCard:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+}
+
+/* Стили для левой карточки (Обо мне) */
+.aboutGrid > div:first-child h2 {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.aboutGrid > div:first-child p {
+  margin-bottom: 20px;
   color: var(--text-secondary);
-  margin-bottom: 35px !important;
 }
 
-.aboutList {
+/* Стили для правой карточки (Технологии) */
+.aboutGrid > div:last-child h2 {
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.aboutPoints {
   list-style: none;
   padding: 0;
 }
 
-.aboutList li {
+.aboutPoints li {
   position: relative;
-  padding-left: 20px !important;
-  font-size: 15px;
-  color: var(--accent-blue);
-  margin-bottom: 12px;
+  padding-left: 24px;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
 }
 
-.aboutList li::before {
+.aboutPoints li::before {
   content: '•';
   position: absolute;
   left: 0;
   color: var(--accent-blue);
-  font-weight: bold;
+  font-size: 1.2em;
 }
 
-/* RIGHT COLUMN */
-.rightColumn {
+/* Для градиентного текста используем отдельный класс */
+.aboutPoints li span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.techItem {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  align-items: center; /* Added for centering */
-}
-
-.tabsRoadmap {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-  overflow-x: visible;
-  scrollbar-width: none; /* Firefox */
-}
-
-.tabsRoadmap::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-.tab {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(58, 109, 194, 0.3);
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
   border-radius: 12px;
-  padding: 10px 20px 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.techItem img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.techItem span {
   font-size: 14px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  position: relative; /* Added for ::after positioning */
+  color: var(--text-secondary);
+  text-align: center;
 }
 
-.tab:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(58, 109, 194, 0.6);
+.techItem:hover {
+  background: rgba(59, 130, 246, 0.1);
 }
 
-.tabActive {
-  background: #ffffff;
-  color: #0042AD;
-  border-color: #0042AD;
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .aboutSection {
+    padding: 120px 0; /* Увеличенные отступы для планшета */
+  }
+
+  .aboutGrid {
+    gap: 32px;
+    padding: 80px 0;
+  }
 }
 
-.tabActive::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px; 
-  background: linear-gradient(to right, #5595FF, #0042AD);
-}
-
-/* LEVITATING VECTOR */
-.levitatingVector {
-  position: absolute;
-  bottom: 80px;
-  left: 47%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 150px;
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-.levitatingVector img {
-  filter: invert(48%) sepia(80%) saturate(1500%) hue-rotate(190deg)
-    brightness(95%) contrast(90%);
-}
-
-/* RESPONSIVE */
+/* Mobile */
 @media (max-width: 768px) {
-  .aboutStackGrid {
+  .aboutGrid {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: 24px;
+    padding: 60px 0;
+    text-align: center;
   }
 
-  .sectionTitle {
-    font-size: 32px;
+  .glassCard {
+    padding: 32px 24px;
+    margin: 0 auto;
   }
 
-  .subtitle {
-    font-size: 18px;
+  .aboutCard h2,
+  .techCard h2 {
+    font-size: 1.25rem; /* Уменьшенный размер заголовков */
   }
 
-  .aboutCard {
-    padding: 24px;
+  .aboutCard p {
+    font-size: 14px; /* Уменьшенный размер текста */
   }
+
+  .aboutPoints li {
+    font-size: 14px; /* Уменьшенный размер текста в списках */
+    padding-left: 20px; /* Скорректирован отступ */
+  }
+
+  .techGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .aboutPoints {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutPoints li {
+    text-align: center;
+  }
+}
+
+/* Mobile small */
+@media (max-width: 480px) {
+  .aboutGrid {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .glassCard {
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .techGrid {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.techHeader {
+  margin-bottom: 16px;
+}
+
+.techHeader h2 {
+  color: var(--text-primary);
+}
+
+/* Floating element styles */
+.floatingElementContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 35px;
+}
+
+.floatingElement {
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.floatingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Стили для темной темы - делаем плавающий элемент белым */
+[data-theme='dark'] .floatingImage {
+  filter: invert(1); /* Делаем изображение белым */
 }

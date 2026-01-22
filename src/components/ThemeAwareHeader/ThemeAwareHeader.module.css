@@ -1,0 +1,166 @@
+.header {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-primary);
+  padding: 12px 16px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-default);
+  overflow: visible;
+}
+
+/* Бургер-кнопка */
+.menuButton {
+  overflow: visible;
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.menuButton:hover {
+  background: var(--bg-secondary);
+}
+
+/* Навигация */
+.nav {
+  overflow: visible;
+  display: flex;
+  gap: 24px;
+  margin-right: 16px;
+}
+
+.navLink {
+  overflow: visible;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navLink:hover {
+  color: var(--accent-blue);
+}
+
+.navLink.active {
+  color: var(--accent-blue);
+  overflow: visible;
+  /* Убран фон у активной кнопки */
+}
+
+/* White sun icon in dark theme */
+[data-theme='dark'] .themeToggle svg:first-child {
+  color: white;
+}
+
+.themeToggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-tertiary, var(--bg-card));
+  border: 1px solid var(--border-default, var(--border-light));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  overflow: visible;
+}
+
+.themeToggle:hover {
+  background: var(--bg-secondary, var(--bg-primary));
+  border-color: var(--accent-blue);
+  overflow: visible;
+}
+
+.skipLink {
+  overflow: visible;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-blue);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  transition: top 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skipLink:focus {
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Стили для мобильного меню */
+@media (max-width: 768px) {
+  .header {
+    right: 16px;
+    left: 16px;
+    padding: 12px 16px;
+    justify-content: space-between;
+    overflow: visible;
+  }
+
+  .menuButton {
+    display: block;
+    z-index: 1001; /* Выше чем остальные элементы хедера */
+    overflow: visible;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 8px); /* Ниже хедера с небольшим отступом */
+    right: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.75); /* Белый фон с 75% прозрачностью */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0; /* Убираем внутренние отступы */
+    gap: 40px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden; /* Скрываем содержимое когда меню закрыто */
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
+    border-radius: 15px; /* Закругленные углы */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-default);
+  }
+
+  .nav.navOpen {
+    max-height: 500px; /* Достаточно большая высота для содержимого */
+    opacity: 1;
+    padding: 20px 0; /* Возвращаем отступы при открытии */
+    overflow: visible;
+  }
+
+  .nav.navClosed {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0; /* Убираем отступы при закрытии */
+    display: block; /* Используем block вместо none для анимации */
+  }
+
+  .navLink {
+    font-size: 18px;
+    overflow: visible;
+  }
+}

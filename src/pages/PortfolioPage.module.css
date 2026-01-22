@@ -1,0 +1,107 @@
+.portfolioPage {
+  padding: 80px 0 40px;
+  overflow: hidden;
+}
+
+.backButton {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.backButton a {
+  background: var(--gradient-primary);
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+.backButton a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.pageHeader h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 3.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 auto 16px;
+}
+
+.gradientText {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pageHeader p {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 20px; /* 32px горизонтальный отступ, 20px вертикальный */
+  margin-top: 64px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  justify-items: center; /* Центрируем элементы сетки */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 20px; /* 24px горизонтальный отступ, 20px вертикальный */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px; /* Одинаковые отступы для мобильных */
+    justify-items: center; /* Центрируем элементы сетки */
+  }
+
+  .pageHeader {
+    margin-bottom: 40px;
+  }
+
+  .portfolioPage {
+    padding: 100px 0 20px; /* Увеличенный отступ сверху для размещения под хедером */
+  }
+
+  .backButton {
+    justify-content: center; /* Центрируем кнопку на мобильных */
+    margin: 0 auto 24px; /* Центрируем блок кнопки и добавляем отступ снизу */
+    width: 100%; /* Занимает всю ширину */
+    max-width: 300px; /* Ограничиваем максимальную ширину */
+  }
+
+  .backButton a {
+    padding: 12px 24px;
+    font-size: var(--text-sm);
+    width: 100%; /* Кнопка занимает всю ширину контейнера */
+  }
+}

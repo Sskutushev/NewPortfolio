@@ -1,24 +1,25 @@
 /* Global CSS Variables */
 :root {
   /* Backgrounds */
-  --bg-primary: #f7f9fc; /* Светло-голубой фон */
-  --bg-card: #ffffff; /* Белые карточки */
-  --bg-overlay: rgba(255, 255, 255, 0.7); /* Полупрозрачный overlay */
+  --bg-primary: #ffffff; /* White background for light theme */
+  --bg-secondary: #f8fafc; /* Light gray secondary background */
+  --bg-tertiary: #f1f5f9; /* Lighter gray tertiary background */
 
   /* Text */
-  --text-primary: #2d3748; /* Темно-серый */
-  --text-secondary: #4a5568; /* Средне-серый */
-  --text-muted: #718096; /* Светло-серый */
-  --text-accent: #3b82f6; /* Синий акцент */
+  --text-primary: #0f172a; /* Dark gray */
+  --text-secondary: #475569; /* Medium gray */
+  --text-tertiary: #64748b; /* Light gray */
 
   /* Accent Colors */
-  --accent-blue: #3b82f6;
-  --accent-blue-light: #60a5fa;
-  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  --accent-blue: #3b82f6; /* Blue accent */
+  --accent-teal: #16a394; /* Teal accent */
+  --accent-purple: #8b5cf6; /* Purple accent */
+  --accent-green: #10b981; /* Green accent */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #16a394 100%);
 
   /* Borders */
-  --border-light: #e2e8f0;
-  --border-card: rgba(255, 255, 255, 0.8);
+  --border-default: #e2e8f0; /* Default border */
+  --border-light: #f1f5f9; /* Light border */
 
   /* Shadows */
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -56,15 +57,29 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
+  --radius-2xl: 24px;
 }
 
 /* Dark mode variables */
 [data-theme='dark'] {
-  --bg-primary: #0f172a;
-  --bg-card: #1e293b;
-  --text-primary: #e2e8f0;
-  --text-secondary: #cbd5e0;
-  --text-muted: #94a3b8;
-  --border-light: #334155;
-  --border-card: rgba(255, 255, 255, 0.1);
+  /* Backgrounds */
+  --bg-primary: #0a0b0d; /* Very dark background */
+  --bg-secondary: #12141a; /* Dark secondary background */
+  --bg-tertiary: #1a1d27; /* Darker tertiary background */
+
+  /* Text */
+  --text-primary: #f1f5f9; /* Light text */
+  --text-secondary: #cbd5e1; /* Medium light text */
+  --text-tertiary: #94a3b8; /* Lighter text */
+
+  /* Accent Colors */
+  --accent-blue: #3b82f6; /* Blue accent */
+  --accent-teal: #16a394; /* Teal accent */
+  --accent-purple: #8b5cf6; /* Purple accent */
+  --accent-green: #10b981; /* Green accent */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #16a394 100%);
+
+  /* Borders */
+  --border-default: #2d3748; /* Dark border */
+  --border-light: #1a202c; /* Lighter dark border */
 }

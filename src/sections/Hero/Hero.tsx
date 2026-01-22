@@ -3,61 +3,50 @@ import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 
 const Hero: React.FC = () => {
-  return (
-    <section className={styles.heroSection} id="hero">
-      {/* Background Layers */}
-      <div className={styles.bgLayer1}></div>
-      <div className={styles.bgLayer2}>
-        <img src="/background2-3.svg" alt="" />
-        <img src="/background2-3.svg" alt="" />
-      </div>
-      <div className={styles.bgLayer3}></div>
+  const scrollToAbout = () => {
+    document.getElementById('about')?.scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
 
-      <div className={`container ${styles.contentContainer}`}>
+  return (
+    <section className={styles.heroSection} id="hero" data-auto-scroll-section aria-labelledby="hero-title">
+      <div className="container">
         <div className={styles.heroGrid}>
-          {/* Left Column - Text Content */}
+          {/* Левая колонка - Текст */}
           <div className={styles.heroLeft}>
             <motion.h1
               className={styles.heroTitle}
+              id="hero-title"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              Создаю производительные
-              <br />
-              интерфейсы на{' '}
-              <span className={styles.gradientText}>
-                React
-                <br />& TypeScript
-              </span>
+              Создаю производительные интерфейсы на <span className={styles.gradientText}>React &amp; TypeScript</span>
             </motion.h1>
-
             <motion.button
-              className={styles.btnPrimary}
+              className={styles.btnPortfolio}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.3,
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              onClick={() =>
-                document
-                  .getElementById('portfolio')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
+              transition={{ delay: 0.3, duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={scrollToAbout}
+              aria-label="Перейти к информации обо мне"
             >
-              Портфолио
+              Обо мне
             </motion.button>
           </div>
 
-          {/* Right Column - Photo with Text Overlay */}
+          {/* Правая колонка - Фото */}
           <div className={styles.heroRight}>
-            <img
+            <motion.img
               src="/hero-me.svg"
-              alt="Sergey Kutushev"
-              className={styles.heroPhoto}
-              style={{ width: '900px', height: '915px' }}
+              alt="Фотография Сергея Кутушева, frontend разработчика"
+              className={styles.heroImage}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
             />
           </div>
         </div>

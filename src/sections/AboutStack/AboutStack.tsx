@@ -1,185 +1,101 @@
-import React, { useState, useEffect } from 'react';
-import { motion, cubicBezier } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './AboutStack.module.css';
-import TechCarousel from './TechCarousel';
-import levitatingVector from '../../assets/images/levitating-vector.svg';
 
 const AboutStack: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(1); // Default to typescript's index
-  const [isPaused, setIsPaused] = useState(false);
-
-  const techData = {
-    javascript: {
-      title: 'JavaScript',
-      icon: 'js',
-      description:
-        'Глубокое понимание базы и «ванильного» стека. Позволяет мне создавать производительные интерфейсы с нуля и эффективно решать задачи там, где готовые библиотеки избыточны.',
-    },
-    typescript: {
-      title: 'TypeScript',
-      icon: 'ts',
-      description:
-        'Основной инструмент последние 2+ года. Использую во всех проектах для обеспечения строгой типизации, безопасности кода и легкой масштабируемости сложных систем.',
-    },
-    react: {
-      title: 'React + Next.js',
-      icon: 'react',
-      description:
-        'Специализируюсь на создании SPA и MPA приложений. Глубоко знаком с экосистемой: от управления состоянием (Zustand/Redux) до серверного рендеринга и оптимизации Web Vitals.',
-    },
-    nodejs: {
-      title: 'Node.js (Fullstack)',
-      icon: 'nodejs',
-      description:
-        'Уверенно владею базой Node.js и Express. Пишу простые бэкенд-сервисы и API-заглушки, планомерно развиваясь в сторону полноценного Fullstack-разработчика.',
-    },
-    styles: {
-      title: 'Infrastructure & Styles',
-      icon: 'styles',
-      description:
-        'Повсеместно использую Tailwind CSS для быстрой верстки и Vitest для тестирования. Настраиваю CI/CD процессы и Docker-окружение для стабильных релизов.',
-    },
-    web3: {
-      title: 'Web3 & Fintech',
-      icon: 'web3',
-      description:
-        'Опыт интеграции крипто-кошельков, работы с DeFi/DEX и разработки Mini Apps для Telegram. Понимаю специфику работы с блокчейн-данными на стороне фронтенда.',
-    },
-  };
-
-  const techArray = Object.keys(techData);
-  const activeTab = techArray[currentIndex]; // Derive activeTab from currentIndex
-
-  const tabs = [
-    { id: 'javascript', label: 'JS' },
-    { id: 'typescript', label: 'TS' },
-    { id: 'react', label: 'Front' },
-    { id: 'nodejs', label: 'Backend' },
-    { id: 'styles', label: 'Styles' },
-    { id: 'web3', label: 'Web3' },
+  // Define tech stack data
+  const techStack = [
+    { name: 'React', icon: '/images/reactimg.svg', category: 'frontend' },
+    { name: 'Next.js', icon: '/images/next.js.svg', category: 'frontend' },
+    { name: 'TypeScript', icon: '/images/TypeScriptimg.svg', category: 'frontend' },
+    { name: 'Tailwind CSS', icon: '/images/tailwindimg.svg', category: 'styles' },
+    { name: 'Framer Motion', icon: '/images/framer.svg', category: 'frontend' },
+    { name: 'Vite', icon: '/images/viteimg.svg', category: 'tools' },
+    { name: 'Docker', icon: '/images/docker.svg', category: 'backend' },
+    { name: 'Ethers.js', icon: '/images/ethers.svg', category: 'web3' },
+    { name: 'Wagmi', icon: '/images/wagmi.svg', category: 'web3' },
   ];
 
-  // Auto-rotation logic
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % techArray.length);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [currentIndex, isPaused, techArray.length]); // Re-run when currentIndex changes or isPaused changes
-
-  const handleTabClick = (tabId: string) => {
-    const index = techArray.indexOf(tabId);
-    if (index !== -1) {
-      setCurrentIndex(index);
-    }
-  };
-
-  const handleNextSectionClick = () => {
-    const nextSection = document.getElementById('portfolio');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section className={styles.aboutStackSection} id="about">
-      <div className={`container ${styles.aboutStackContainer}`}>
-        <div className={styles.aboutStackGrid}>
-          {/* LEFT COLUMN - About Me */}
+    <section className={styles.aboutSection} id="about" data-auto-scroll-section aria-labelledby="about-heading">
+      <div className="container">
+        <div className={styles.aboutGrid}>
+          {/* Левая карточка - Обо мне */}
           <motion.div
-            className={styles.leftColumn}
-            initial={{ opacity: 0, x: -30 }}
+            className={styles.glassCard}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            aria-labelledby="about-me-heading"
           >
-            <h2 className={styles.sectionTitle}>Обо мне</h2>
-            <p className={styles.subtitle}>
-              Frontend-разработчик с пониманием бизнес-логики
-            </p>
-            <div className={styles.aboutCard}>
-              <p className={styles.aboutText}>
-                Мой путь в разработке начался с автоматизации сложных торговых
-                систем в финтехе. Это научило меня ответственности за
-                архитектуру, производительность и чистоту данных. Сейчас я
-                переношу этот опыт во фронтенд, создавая решения от PWA до
-                Web3-сервисов.
-              </p>
-              <ul className={styles.aboutList}>
-                <li>
-                  Создаю быстрые интерфейсы, опираясь на общий опыт 10+ лет
-                  работы с бизнесом и IT
-                </li>
-                <li>Разрабатываю резвые продукты в сфере Fintech и Web3</li>
-                <li>
-                  Проектирую архитектуру, пишу чистый код и соблюдаю сроки
-                </li>
-              </ul>
-            </div>
+            <h2 id="about-me-heading">Обо мне</h2>
+            <p>Frontend-разработчик с пониманием бизнес-логики и фокусом на конечный результат<br/>Проектирую и реализую интерфейсы, которые решают задачи продукта, а не просто выглядят хорошо.</p>
+            <ul className={styles.aboutPoints} aria-label="Информация обо мне">
+              <li><span>Создаю быстрые интерфейсы, опираясь на общий опыт 10+ лет работы с бизнесом и IT</span></li>
+              <li><span>Разрабатываю реальные продукты в сфере Fintech и Web3-сервисов</span></li>
+              <li><span>Проектирую архитектуру, пишу чистый код и соблюдаю сроки</span></li>
+            </ul>
           </motion.div>
 
-          {/* RIGHT COLUMN - Tech Stack */}
+          {/* Правая карточка - Стек */}
           <motion.div
-            className={styles.rightColumn}
-            initial={{ opacity: 0, x: 30 }}
+            className={styles.glassCard}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.2,
-              ease: cubicBezier(0.22, 1, 0.36, 1),
-            }}
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            aria-labelledby="tech-stack-heading"
           >
-            <h2 className={styles.sectionTitle}>Технологический стек</h2>
-            <div className={styles.tabsRoadmap}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
-                  onClick={() => handleTabClick(tab.id)}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className={styles.techHeader}>
+              <h2 id="tech-stack-heading">Технологический стек</h2>
             </div>
-            <div
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <TechCarousel
-                currentIndex={currentIndex}
-                techData={techData}
-                techArray={techArray}
-                onIndicatorClick={setCurrentIndex}
-              />
+
+            <div className={styles.techGrid} aria-label="Технологии и инструменты">
+              {techStack.map((tech, index) => (
+                <motion.div
+                  className={styles.techItem}
+                  key={index}
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.05 * index }}
+                  aria-label={tech.name}
+                >
+                  <img src={tech.icon} alt={tech.name} />
+                  <span>{tech.name}</span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Floating element at the bottom center of the section */}
+      <div className={styles.floatingElementContainer}>
         <motion.div
-          className={styles.levitatingVector}
-          initial={{ opacity: 0, y: 50, scale: 0.8 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          className={styles.floatingElement}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: [0, -15, 0] }}
           transition={{
-            delay: 0.8,
-            duration: 1,
-            ease: cubicBezier(0.22, 1, 0.36, 1),
-          }}
-          viewport={{ once: true, margin: '-100px' }}
-          onClick={handleNextSectionClick}
-          style={{ cursor: 'pointer' }}
-        >
-          <motion.img
-            src={levitatingVector}
-            alt="Scroll to next section"
-            animate={{ y: [0, -15, 0] }}
-            transition={{
+            y: {
               duration: 4,
               repeat: Infinity,
               repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-          />
+              ease: 'easeInOut'
+            },
+            delay: 0.8
+          }}
+          onClick={() => {
+            document.getElementById('portfolio')?.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <img src="/Vector (1).svg" alt="Scroll to portfolio" className={styles.floatingImage} />
         </motion.div>
       </div>
     </section>

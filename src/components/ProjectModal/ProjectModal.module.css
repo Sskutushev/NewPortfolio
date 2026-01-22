@@ -1,0 +1,118 @@
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modalContent {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 24px;
+  max-width: 900px;
+  max-height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-default);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeader h3 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.modalHeader button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modalTabs {
+  display: flex;
+  gap: 16px;
+  padding: 24px 32px 0;
+}
+
+.modalTabs button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modalTabs button.active {
+  background: var(--gradient-primary);
+  color: white;
+}
+
+.modalTabs button:not(.active) {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.modalBody {
+  padding: 32px;
+  overflow-y: auto;
+}
+
+.flowContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.flowBlock {
+  padding: 24px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+}
+
+.flowBlock h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.flowBlock.input h4 { color: var(--accent-blue); }
+.flowBlock.process h4 { color: var(--accent-purple); }
+.flowBlock.output h4 { color: var(--accent-green); }
+
+.codeContent pre {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.codeContent code {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
