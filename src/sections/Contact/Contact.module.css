@@ -69,15 +69,18 @@
   animation: blink 1s infinite;
   color: var(--accent-blue);
   margin-left: 2px;
+  will-change: opacity; /* Оптимизация анимации */
 }
 
 @keyframes blink {
   0%,
   100% {
     opacity: 1;
+    transform: translateZ(0); /* Hardware acceleration */
   }
   50% {
     opacity: 0;
+    transform: translateZ(0); /* Hardware acceleration */
   }
 }
 

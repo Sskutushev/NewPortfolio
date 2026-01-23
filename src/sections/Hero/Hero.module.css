@@ -31,8 +31,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  filter: blur(0px); /* Добавим размытие */
-  filter: opacity(500px);
+  filter: blur(10px); /* Добавим размытие */
   z-index: -2; /* Поместим фон позади содержимого */
 }
 

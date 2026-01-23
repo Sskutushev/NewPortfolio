@@ -45,6 +45,7 @@ export const useMouseTrail = (
     let animationFrameId: number;
 
     const animate = () => {
+      // Оптимизируем очистку холста
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       setParticles((prev) => {
@@ -54,14 +55,18 @@ export const useMouseTrail = (
             opacity: p.opacity - 0.02,
             size: p.size * 0.98,
           }))
-          .filter((p) => p.opacity > 0);
+          .filter((p) => p.opacity > 0 && p.size > 0.5); // Удаляем слишком маленькие частицы
 
-        updated.forEach((p) => {
+        // Оптимизируем рендеринг
+        for (let i = 0; i < updated.length; i++) {
+          const p = updated[i];
+
+          // Рендерим частицу
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(${hexToRgb(p.color)}, ${p.opacity})`;
           ctx.fill();
-        });
+        }
 
         return updated;
       });

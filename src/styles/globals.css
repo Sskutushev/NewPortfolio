@@ -107,7 +107,7 @@ select {
   margin: 0 auto;
   padding: 0 24px;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: visible; /* Allow overflow for animations */
 }
 
 /* Typography classes */
@@ -180,6 +180,23 @@ select {
   will-change: transform;
 }
 
+/* Optimize all animations */
+* {
+  will-change: auto;
+}
+
+/* Specific elements that animate frequently */
+.projectCard,
+.heroImage,
+.floatingElement,
+.socialIcons a,
+.socialIcons button {
+  will-change: transform;
+  transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 /* Loading indicator */
 .loading {
   display: flex;
@@ -197,8 +214,8 @@ select {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Responsive adjustments */

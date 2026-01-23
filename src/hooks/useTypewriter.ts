@@ -5,21 +5,30 @@ const useTypewriter = (text: string, speed: number = 50) => {
 
   useEffect(() => {
     let currentIndex = 0;
-    let timeoutId: NodeJS.Timeout;
+    let animationFrameId: number;
+    let timeoutId: number; // Используем number вместо NodeJS.Timeout
 
-    const typeText = () => {
+    const typeCharacter = () => {
       if (currentIndex < text.length) {
         setCurrentText(text.substring(0, currentIndex + 1));
         currentIndex++;
-        timeoutId = setTimeout(typeText, speed);
+
+        // Используем setTimeout для контроля скорости
+        timeoutId = window.setTimeout(() => {
+          animationFrameId = requestAnimationFrame(typeCharacter);
+        }, speed);
       }
     };
 
-    typeText();
+    // Начинаем анимацию
+    animationFrameId = requestAnimationFrame(typeCharacter);
 
     return () => {
       if (timeoutId) {
-        clearTimeout(timeoutId);
+        window.clearTimeout(timeoutId);
+      }
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
       }
     };
   }, [text, speed]);

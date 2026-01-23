@@ -47,7 +47,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Изображение проекта */}
       <div className={styles.projectImage}>
         {project.image ? (
-          <img src={project.image} alt={project.title} />
+          <img
+            src={project.image}
+            alt={project.title}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              overflow: 'hidden', // Убедимся, что изображение не выходит за границы
+            }}
+          />
         ) : (
           <div className={styles.placeholderImage}>No Image</div>
         )}

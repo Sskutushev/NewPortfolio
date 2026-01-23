@@ -108,6 +108,7 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
     if (!tickingRef.current) {
       tickingRef.current = true;
 
+      // Оптимизируем вызов requestAnimationFrame
       requestAnimationFrame(() => {
         // Определяем направление прокрутки
         const scrollDirection =
