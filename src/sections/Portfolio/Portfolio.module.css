@@ -13,13 +13,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    url('/background2-3.svg');
+  background: url('/background2-3.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  filter: blur(5px); 
-  z-index: -2; 
+  filter: blur(3px);
+  z-index: -2;
 }
 
 .sectionHeader {
@@ -68,8 +67,8 @@
     gap: 10px; /* Уменьшенный зазор между карточками */
     padding: 20px 0;
     margin: 40px 0;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   .portfolioFan::-webkit-scrollbar {
@@ -135,8 +134,8 @@
     gap: 10px; /* Уменьшенный зазор между карточками */
     padding: 20px 0;
     margin: 40px auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   .portfolioFan::-webkit-scrollbar {

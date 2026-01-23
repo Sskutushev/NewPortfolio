@@ -64,6 +64,23 @@
   color: var(--text-primary);
 }
 
+.contactCode code::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: var(--accent-blue);
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Syntax highlighting */
 .contactCode code .key {
   color: #60a5fa; /* Синий для ключей */

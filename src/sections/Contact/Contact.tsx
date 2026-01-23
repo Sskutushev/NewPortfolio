@@ -2,9 +2,50 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Github, Mail } from 'lucide-react';
 import styles from './Contact.module.css';
+import useTypewriter from '../../hooks/useTypewriter';
 
 const Contact: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
+
+  const contactCode = `const contact = {
+  telegram: '@sskutushev',
+  email: 'sskutushev@gmail.com',
+  github: 'github.com/sskutushev',
+  location: 'Санкт-Петербург'
+};`;
+
+  const typedCode = useTypewriter(contactCode, 30); // Быстрая скорость печати
+
+  const highlightSyntaxTyped = (code: string) => {
+    // Разбиваем код на части для подсветки
+    const parts = code.split(
+      /(const|telegram:|email:|github:|location:|,|\s+)/
+    );
+
+    return parts.map((part, index) => {
+      if (part === 'const') {
+        return (
+          <span key={index} className={styles.key}>
+            {part}
+          </span>
+        );
+      } else if (part.match(/(telegram:|email:|github:|location:)/)) {
+        return (
+          <span key={index} className={styles.key}>
+            {part}
+          </span>
+        );
+      } else if (part.match(/^@.*$|'.*'|"."/)) {
+        return (
+          <span key={index} className={styles.string}>
+            {part}
+          </span>
+        );
+      } else {
+        return part;
+      }
+    });
+  };
 
   const copyToClipboard = async (text: string) => {
     try {
@@ -16,13 +57,6 @@ const Contact: React.FC = () => {
       console.error('Failed to copy text: ', err);
     }
   };
-
-  const contactCode = `const contact = {
-  telegram: '@sskutushev',
-  email: 'sskutushev@gmail.com',
-  github: 'github.com/sskutushev',
-  location: 'Санкт-Петербург'
-};`;
 
   // Animation variants for social icons
   const containerVariants = {
@@ -75,7 +109,7 @@ const Contact: React.FC = () => {
           aria-label="Контактная информация в формате кода"
         >
           <pre>
-            <code>{contactCode}</code>
+            <code>{highlightSyntaxTyped(typedCode)}</code>
           </pre>
         </motion.div>
 
