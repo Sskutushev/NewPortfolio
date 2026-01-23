@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Github, Mail } from 'lucide-react';
 import styles from './Contact.module.css';
 import useTypewriter from '../../hooks/useTypewriter';
+import useFirstIntersection from '../../hooks/useFirstIntersection';
 
 const Contact: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
-  const [isInView, setIsInView] = useState<boolean>(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, hasIntersected } = useFirstIntersection();
 
   const contactCode = `const contact = {
   telegram: '@sskutushev',
@@ -16,32 +16,12 @@ const Contact: React.FC = () => {
   location: 'Санкт-Петербург'
 };`;
 
-  // Анимация печати запускается только когда секция видна
-  const typedCode = useTypewriter(isInView ? contactCode : '', 30); // Быстрая скорость печати
-
-  // Эффект для отслеживания видимости секции
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      {
-        threshold: 0.3, // Срабатывает, когда 30% секции видно
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  // Анимация печати запускается при первом пересечении секции
+  const typedCode = useTypewriter(hasIntersected ? contactCode : '', 30); // Быстрая скорость печати
 
   const highlightSyntaxTyped = (code: string) => {
+    if (!code) return null; // Возвращаем null, если код пустой
+
     // Разбиваем код на части для подсветки
     const parts = code.split(
       /(const|telegram:|email:|github:|location:|,|\s+)/
@@ -135,7 +115,7 @@ const Contact: React.FC = () => {
           aria-label="Контактная информация в формате кода"
         >
           <pre>
-            <code>{highlightSyntaxTyped(typedCode)}</code>
+            <code>{highlightSyntaxTyped(typedCode || contactCode)}</code>
           </pre>
         </motion.div>
 
