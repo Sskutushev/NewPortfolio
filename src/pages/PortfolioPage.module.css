@@ -57,9 +57,41 @@
   margin: 0 auto;
 }
 
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.featuredFarLeft {
+  grid-column: 1;
+}
+
+.featuredLeft {
+  grid-column: 2;
+}
+
+.featuredCenter {
+  grid-column: 3;
+  transform: scale(1.1);
+}
+
+.featuredRight {
+  grid-column: 4;
+}
+
+.featuredFarRight {
+  grid-column: 5;
+}
+
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(350px, 1fr)
+  ); /* Автоматически подстраивается под размер карточки */
   gap: 32px 20px; /* 32px горизонтальный отступ, 20px вертикальный */
   margin-top: 64px;
   width: 100%;
@@ -70,14 +102,32 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .projectsGrid {
+  .featuredGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featuredFarLeft,
+  .featuredLeft,
+  .featuredCenter,
+  .featuredRight,
+  .featuredFarRight {
+    grid-column: auto;
+    transform: scale(1);
+  }
+
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px 20px; /* 24px горизонтальный отступ, 20px вертикальный */
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
+  .featuredGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .projectsGrid {
     grid-template-columns: 1fr;
     gap: 20px; /* Одинаковые отступы для мобильных */

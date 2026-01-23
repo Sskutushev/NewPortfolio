@@ -27,15 +27,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    url('/background2-3.svg');
+  background: url('/background2-3.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   filter: blur(5px); /* Добавим размытие */
   z-index: -2; /* Поместим фон позади содержимого */
 }
-
 
 /* Темная тема фон - добавим поверх фона */
 [data-theme='dark'] .heroSection::after {
@@ -45,7 +43,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1), transparent 50%);
+  background: radial-gradient(
+    circle at 20% 50%,
+    rgba(59, 130, 246, 0.1),
+    transparent 50%
+  );
   z-index: -1; /* Поместим поверх основного фона но позади контента */
 }
 
@@ -57,7 +59,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.08), transparent 50%);
+  background: radial-gradient(
+    circle at 20% 50%,
+    rgba(20, 184, 166, 0.08),
+    transparent 50%
+  );
   z-index: -1; /* Поместим поверх основного фона но позади контента */
 }
 
@@ -143,24 +149,34 @@
 
   .heroGrid {
     grid-template-columns: 1fr 1fr;
-    gap: calc(32px + 16 * ((100vw - 769px) / 255)); /* 32px at 769px to 48px at 1024px */
+    gap: calc(
+      32px + 16 * ((100vw - 769px) / 255)
+    ); /* 32px at 769px to 48px at 1024px */
     padding: 80px calc(16px + 16 * ((100vw - 769px) / 255)); /* 16px at 769px to 32px at 1024px */
   }
 
   .heroRight {
-    max-width: calc(450px + 150 * ((100vw - 769px) / 255)); /* 450px at 769px to 600px at 1024px */
+    max-width: calc(
+      450px + 150 * ((100vw - 769px) / 255)
+    ); /* 450px at 769px to 600px at 1024px */
   }
 
   .heroImage {
-    width: calc(450px + 150 * ((100vw - 769px) / 255)); /* 450px at 769px to 600px at 1024px */
-    height: calc(450px + 150 * ((100vw - 769px) / 255)); /* 450px at 769px to 600px at 1024px */
+    width: calc(
+      450px + 150 * ((100vw - 769px) / 255)
+    ); /* 450px at 769px to 600px at 1024px */
+    height: calc(
+      450px + 150 * ((100vw - 769px) / 255)
+    ); /* 450px at 769px to 600px at 1024px */
     object-fit: cover;
     border-radius: 24px;
     overflow: visible;
   }
 
   .heroTitle {
-    font-size: calc(1.5rem + 0.25 * ((100vw - 769px) / 255)); /* 1.5rem at 769px to 1.75rem at 1024px */
+    font-size: calc(
+      1.5rem + 0.25 * ((100vw - 769px) / 255)
+    ); /* 1.5rem at 769px to 1.75rem at 1024px */
   }
 }
 
@@ -168,26 +184,38 @@
 @media (max-width: 768px) and (min-width: 641px) {
   .heroGrid {
     grid-template-columns: 1fr 1fr;
-    gap: calc(24px + 8 * ((100vw - 641px) / 127)); /* 24px at 641px to 32px at 768px */
-    padding: calc(50px + 10 * ((100vw - 641px) / 127)); /* 50px at 641px to 60px at 768px */
+    gap: calc(
+      24px + 8 * ((100vw - 641px) / 127)
+    ); /* 24px at 641px to 32px at 768px */
+    padding: calc(
+      50px + 10 * ((100vw - 641px) / 127)
+    ); /* 50px at 641px to 60px at 768px */
     max-width: 100%;
     margin: 0 auto;
   }
 
   .heroRight {
-    max-width: calc(350px + 100 * ((100vw - 641px) / 127)); /* 350px at 641px to 450px at 768px */
+    max-width: calc(
+      350px + 100 * ((100vw - 641px) / 127)
+    ); /* 350px at 641px to 450px at 768px */
   }
 
   .heroImage {
-    width: calc(350px + 100 * ((100vw - 641px) / 127)); /* 350px at 641px to 450px at 768px */
-    height: calc(350px - 100 * ((100vw - 641px) / 127)); /* 350px at 641px to 250px at 768px */
+    width: calc(
+      350px + 100 * ((100vw - 641px) / 127)
+    ); /* 350px at 641px to 450px at 768px */
+    height: calc(
+      350px - 100 * ((100vw - 641px) / 127)
+    ); /* 350px at 641px to 250px at 768px */
     object-fit: cover;
     border-radius: 24px;
     overflow: visible;
   }
 
   .heroTitle {
-    font-size: calc(1.25rem + 0.25 * ((100vw - 641px) / 127)); /* 1.25rem at 641px to 1.5rem at 768px */
+    font-size: calc(
+      1.25rem + 0.25 * ((100vw - 641px) / 127)
+    ); /* 1.25rem at 641px to 1.5rem at 768px */
   }
 }
 
@@ -195,8 +223,12 @@
 @media (max-width: 640px) and (min-width: 481px) {
   .heroGrid {
     grid-template-columns: 1fr;
-    gap: calc(16px + 8 * ((100vw - 481px) / 159)); /* 16px at 481px to 24px at 640px */
-    padding: calc(40px + 10 * ((100vw - 481px) / 159)); /* 40px at 481px to 50px at 640px */
+    gap: calc(
+      16px + 8 * ((100vw - 481px) / 159)
+    ); /* 16px at 481px to 24px at 640px */
+    padding: calc(
+      40px + 10 * ((100vw - 481px) / 159)
+    ); /* 40px at 481px to 50px at 640px */
     text-align: center;
     max-width: 100%;
     margin: 0 auto;
@@ -208,20 +240,28 @@
 
   .heroRight {
     order: -1; /* Фото сверху */
-    max-width: calc(250px + 100 * ((100vw - 481px) / 159)); /* 250px at 481px to 350px at 640px */
+    max-width: calc(
+      250px + 100 * ((100vw - 481px) / 159)
+    ); /* 250px at 481px to 350px at 640px */
     margin: 0 auto;
   }
 
   .heroImage {
-    width: calc(250px + 100 * ((100vw - 481px) / 159)); /* 250px at 481px to 350px at 640px */
-    height: calc(450px + 100 * ((100vw - 481px) / 159)); /* 450px at 481px to 550px at 640px */
+    width: calc(
+      250px + 100 * ((100vw - 481px) / 159)
+    ); /* 250px at 481px to 350px at 640px */
+    height: calc(
+      450px + 100 * ((100vw - 481px) / 159)
+    ); /* 450px at 481px to 550px at 640px */
     object-fit: cover;
     border-radius: 24px;
     overflow: visible;
   }
 
   .heroTitle {
-    font-size: calc(1.25rem + 0.25 * ((100vw - 481px) / 159)); /* 1.25rem at 481px to 1.5rem at 640px */
+    font-size: calc(
+      1.25rem + 0.25 * ((100vw - 481px) / 159)
+    ); /* 1.25rem at 481px to 1.5rem at 640px */
   }
 }
 
@@ -263,4 +303,54 @@
     padding: 12px 24px;
     font-size: var(--text-sm);
   }
+}
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.btnOutline {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 12px 30px;
+}
+
+.btnOutline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: var(--gradient-primary);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.btnOutline .gradientText {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.btnOutline:hover {
+  transform: translateY(-2px);
 }

@@ -1,0 +1,112 @@
+.interactiveDeskContainer {
+  position: relative;
+  width: 650px;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interactiveDesk {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Анимация пара от кофе */
+.steamAnimation {
+  animation: steamRise 3s infinite ease-in;
+}
+
+@keyframes steamRise {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+}
+
+/* CSS переменные для тем */
+[data-theme='light'] {
+  --desk-surface: #e8d5c4;
+  --desk-legs: #8b6f47;
+  --shelf-color: #a0826d;
+  --lamp-wire: #333;
+  --lamp-shade: #9b59b6;
+  --lamp-light: #fff9e6;
+  --monitor-frame: #2c3e50;
+  --monitor-screen: #ecf0f1;
+  --laptop-body: #34495e;
+  --laptop-screen: #1a1a1a;
+  --laptop-keys: #2c3e50;
+  --laptop-border: #2c3e50;
+  --mouse-body: #3498db;
+  --mouse-divider: #2980b9;
+  --cup-body: #fff;
+  --coffee-liquid: #3e2723;
+  --cup-handle: #ccc;
+  --steam: #aaa;
+  --book-react: #ff6b6b;
+  --book-typescript: #3498db;
+  --book-nextjs: #000;
+  --book-nodejs: #2ecc71;
+  --book-css: #f39c12;
+  --browser-bar: #e0e0e0;
+  --code-text: #333;
+  --code-particle: #3b82f6;
+}
+
+[data-theme='dark'] {
+  --desk-surface: #2c2416;
+  --desk-legs: #1a1410;
+  --shelf-color: #3d3128;
+  --lamp-wire: #666;
+  --lamp-shade: #6c3483;
+  --lamp-light: transparent;
+  --monitor-frame: #1c2833;
+  --monitor-screen: #0a0e12;
+  --laptop-body: #1c2833;
+  --laptop-screen: #000;
+  --laptop-keys: #2c3e50;
+  --laptop-border: #34495e;
+  --mouse-body: #2874a6;
+  --mouse-divider: #1b4f72;
+  --cup-body: #34495e;
+  --coffee-liquid: #271a14;
+  --cup-handle: #4a697c;
+  --steam: #7f8c8d;
+  --book-react: #e74c3c;
+  --book-typescript: #2980b9;
+  --book-nextjs: #2c3e50;
+  --book-nodejs: #27ae60;
+  --book-css: #f39c12;
+  --browser-bar: #333;
+  --code-text: #ecf0f1;
+  --code-particle: #8b5cf6;
+}
+
+/* Адаптив для планшетов */
+@media (max-width: 1024px) {
+  .interactiveDeskContainer {
+    width: 550px;
+    height: 550px;
+  }
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .interactiveDeskContainer {
+    width: 450px;
+    height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .interactiveDeskContainer {
+    width: 320px;
+    height: 320px;
+  }
+}

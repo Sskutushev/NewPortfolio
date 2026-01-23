@@ -31,9 +31,9 @@ const Contact: React.FC = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const iconVariants = {
@@ -43,16 +43,26 @@ const Contact: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
   };
 
   return (
-    <section className={styles.contactSection} id="contact" data-auto-scroll-section aria-labelledby="contact-heading">
+    <section
+      className={styles.contactSection}
+      id="contact"
+      data-auto-scroll-section
+      aria-labelledby="contact-heading"
+    >
       <div className="container">
         {/* Заголовок */}
-        <motion.div className={styles.sectionHeader} id="contact-heading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div
+          className={styles.sectionHeader}
+          id="contact-heading"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           <h2>Контакты</h2>
         </motion.div>
 
@@ -103,8 +113,8 @@ const Contact: React.FC = () => {
           <motion.button
             variants={iconVariants}
             whileHover={{ scale: 1.15, rotate: 5 }}
-            onClick={() => copyToClipboard("sskutushev@gmail.com")}
-            aria-label={copied ? "Email скопирован" : "Скопировать email адрес"}
+            onClick={() => copyToClipboard('sskutushev@gmail.com')}
+            aria-label={copied ? 'Email скопирован' : 'Скопировать email адрес'}
           >
             {copied ? '✓' : <Mail size={24} />}
           </motion.button>

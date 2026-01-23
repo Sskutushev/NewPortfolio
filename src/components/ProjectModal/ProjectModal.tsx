@@ -2,30 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code } from 'lucide-react';
 import styles from './ProjectModal.module.css';
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  tech: string;
-  metrics: {
-    label: string;
-    value: string;
-  };
-  image: string;
-  flow?: {
-    input: string;
-    process: string;
-    output: string;
-  };
-  codeHighlight?: {
-    title: string;
-    code: string;
-  };
-}
+import * as ProjectsData from '../../data/projects';
 
 interface ProjectModalProps {
-  project: Project;
+  project: ProjectsData.Project;
   onClose: () => void;
 }
 
@@ -101,7 +81,11 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
           {/* Контент */}
           <div className={styles.modalBody}>
             {activeTab === 'flow' ? (
-              <div className={styles.flowContent} id="flow-panel" role="tabpanel">
+              <div
+                className={styles.flowContent}
+                id="flow-panel"
+                role="tabpanel"
+              >
                 <div className={`${styles.flowBlock} ${styles.input}`}>
                   <h4>Input</h4>
                   <p>{project.flow?.input || 'No flow data available'}</p>
@@ -116,13 +100,19 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                 </div>
               </div>
             ) : (
-              <div className={styles.codeContent} id="code-panel" role="tabpanel">
+              <div
+                className={styles.codeContent}
+                id="code-panel"
+                role="tabpanel"
+              >
                 <div className={styles.codeHeader}>
                   <Code size={24} />
                   <h4>{project.codeHighlight?.title || 'Code Highlight'}</h4>
                 </div>
                 <pre>
-                  <code>{project.codeHighlight?.code || '// No code available'}</code>
+                  <code>
+                    {project.codeHighlight?.code || '// No code available'}
+                  </code>
                 </pre>
               </div>
             )}

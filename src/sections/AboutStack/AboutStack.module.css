@@ -1,14 +1,14 @@
 .aboutSection {
   position: relative;
   padding: 150px 0; /* Увеличенные отступы сверху и снизу для десктопа */
-  background: var(--bg-secondary);
+  /* background: var(--bg-secondary); */
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
 }
 
-.aboutSection::before {
+/* .aboutSection::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -19,7 +19,7 @@
   background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
   filter: blur(80px);
   pointer-events: none;
-}
+} */
 
 /* Светлая тема */
 [data-theme='light'] .aboutSection::before {

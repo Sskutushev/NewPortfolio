@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 
+// Определение типа для NodeJS.Timeout
+type TimeoutID = ReturnType<typeof setTimeout>;
+
 interface AutoScrollHandlerProps {
   children: React.ReactNode;
 }
@@ -12,7 +15,7 @@ const AutoScrollHandler: React.FC<AutoScrollHandlerProps> = ({ children }) => {
   const currentIndexRef = useRef(0);
   const isMobileRef = useRef(false);
   const scrollThresholdRef = useRef(0); // Порог прокрутки для срабатывания автоскролла
-  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null); // Таймер для отслеживания времени прокрутки
+  const scrollTimerRef = useRef<TimeoutID | null>(null); // Таймер для отслеживания времени прокрутки
 
   // Проверяем, является ли устройство мобильным
   useEffect(() => {
