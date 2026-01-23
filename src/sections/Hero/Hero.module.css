@@ -130,7 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: visible; /* Возвращаем overflow: visible */
 }
 
 .heroImage {
@@ -138,7 +138,7 @@
   height: 1000px;
   object-fit: cover;
   border-radius: 24px;
-  overflow: visible;
+  overflow: visible; /* Возвращаем overflow: visible */
 }
 
 /* Large Tablet */
@@ -170,7 +170,7 @@
     ); /* 450px at 769px to 600px at 1024px */
     object-fit: cover;
     border-radius: 24px;
-    overflow: visible;
+    overflow: visible; /* Возвращаем visible */
   }
 
   .heroTitle {
@@ -205,11 +205,11 @@
       350px + 100 * ((100vw - 641px) / 127)
     ); /* 350px at 641px to 450px at 768px */
     height: calc(
-      350px - 100 * ((100vw - 641px) / 127)
-    ); /* 350px at 641px to 250px at 768px */
+      350px + 100 * ((100vw - 641px) / 127)
+    ); /* 350px at 641px to 450px at 768px */
     object-fit: cover;
     border-radius: 24px;
-    overflow: visible;
+    overflow: visible; /* Возвращаем visible */
   }
 
   .heroTitle {
@@ -255,7 +255,7 @@
     ); /* 450px at 481px to 550px at 640px */
     object-fit: cover;
     border-radius: 24px;
-    overflow: visible;
+    overflow: visible; /* Возвращаем visible */
   }
 
   .heroTitle {
@@ -292,7 +292,7 @@
     height: 320px;
     object-fit: cover;
     border-radius: 24px;
-    overflow: visible;
+    overflow: visible; /* Возвращаем visible */
   }
 
   .heroTitle {

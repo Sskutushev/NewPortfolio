@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Github, Mail } from 'lucide-react';
 import styles from './Contact.module.css';
@@ -6,6 +6,8 @@ import useTypewriter from '../../hooks/useTypewriter';
 
 const Contact: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
+  const [isInView, setIsInView] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const contactCode = `const contact = {
   telegram: '@sskutushev',
@@ -14,7 +16,30 @@ const Contact: React.FC = () => {
   location: 'Санкт-Петербург'
 };`;
 
-  const typedCode = useTypewriter(contactCode, 30); // Быстрая скорость печати
+  // Анимация печати запускается только когда секция видна
+  const typedCode = useTypewriter(isInView ? contactCode : '', 30); // Быстрая скорость печати
+
+  // Эффект для отслеживания видимости секции
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.3, // Срабатывает, когда 30% секции видно
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const highlightSyntaxTyped = (code: string) => {
     // Разбиваем код на части для подсветки
@@ -84,6 +109,7 @@ const Contact: React.FC = () => {
 
   return (
     <section
+      ref={sectionRef}
       className={styles.contactSection}
       id="contact"
       data-auto-scroll-section
@@ -104,8 +130,8 @@ const Contact: React.FC = () => {
         <motion.div
           className={styles.contactCode}
           initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
           aria-label="Контактная информация в формате кода"
         >
           <pre>

@@ -75,10 +75,11 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              style={{
-                overflow: 'hidden',
-                willChange: 'opacity, transform', // Оптимизация производительности
-              }}
+              style={
+                {
+                  // Убираем willChange, чтобы не создавать дополнительный слой
+                }
+              }
             />
           </div>
         </div>
