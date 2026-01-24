@@ -14,83 +14,104 @@ const ThemeAwareHeader: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  return (
-    <header
-      className={`${styles.header} ${isMenuOpen ? styles.headerOpen : ''}`}
-    >
-      <button
-        className={styles.menuButton}
-        onClick={toggleMenu}
-        aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
-      >
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    setIsMenuOpen(false);
+  };
 
-      <nav
-        className={`${styles.nav} ${isMenuOpen ? styles.navOpen : styles.navClosed}`}
-      >
+  return (
+    <>
+      {/* КОНТЕЙНЕР 1: ЛОГОТИП (СЛЕВА) - СКРЫТ НА МОБИЛКЕ */}
+      <div className={styles.logoContainer}>
         <Link
           to="/"
-          className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
+          className={styles.logo}
           onClick={(e) => {
             if (location.pathname === '/') {
               e.preventDefault();
-              window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-              });
+              scrollToTop();
             }
-            setIsMenuOpen(false); // Закрыть меню после клика
           }}
+          aria-label="На главную"
         >
-          Главная
+          <span className={styles.logoText}>Sskutushev</span>
         </Link>
-        <Link
-          to="/portfolio"
-          className={`${styles.navLink} ${location.pathname === '/portfolio' ? styles.active : ''}`}
-          onClick={() => setIsMenuOpen(false)} // Закрыть меню после клика
+      </div>
+
+      {/* КОНТЕЙНЕР 2: НАВИГАЦИЯ (ЦЕНТР) / БУРГЕР НА МОБИЛКЕ */}
+      <header className={styles.navContainer}>
+        <button
+          className={styles.menuButton}
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
         >
-          Портфолио
-        </Link>
-        <a
-          href="/resume.pdf"
-          download="resume.pdf"
-          className={styles.navLink}
-          onClick={(e) => {
-            // Предотвращаем стандартное поведение для корректной работы в браузерах
-            e.preventDefault();
-            // Создаем элемент ссылки и кликаем по нему программно
-            const link = document.createElement('a');
-            link.href = '/resume.pdf';
-            link.download = 'resume.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
-            setIsMenuOpen(false); // Закрыть меню после клика
-          }}
+        <nav
+          className={`${styles.nav} ${isMenuOpen ? styles.navOpen : styles.navClosed}`}
         >
-          Резюме
-        </a>
-      </nav>
+          {/* ЛОГОТИП ВНУТРИ МОБИЛЬНОГО МЕНЮ */}
+          <div className={styles.mobileMenuLogo}>
+            <span className={styles.mobileLogoText}>Sskutushev</span>
+          </div>
 
-      <motion.button
-        className={styles.themeToggle}
-        onClick={toggleTheme}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={
-          theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
-        }
-      >
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </motion.button>
+          <Link
+            to="/"
+            className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                scrollToTop();
+              }
+              setIsMenuOpen(false);
+            }}
+          >
+            Главная
+          </Link>
+          <a
+            href="/resume.pdf"
+            download="resume.pdf"
+            className={styles.navLink}
+            onClick={(e) => {
+              e.preventDefault();
+              const link = document.createElement('a');
+              link.href = '/resume.pdf';
+              link.download = 'resume.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setIsMenuOpen(false);
+            }}
+          >
+            Резюме
+          </a>
+        </nav>
+      </header>
 
-      {/* Skip to main content link for accessibility */}
+      {/* КОНТЕЙНЕР 3: ТЕМА (СПРАВА) */}
+      <div className={styles.themeContainer}>
+        <motion.button
+          className={styles.themeToggle}
+          onClick={toggleTheme}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={
+            theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+          }
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </motion.button>
+      </div>
+
+      {/* SKIP LINK */}
       <a href="#main-content" className={styles.skipLink}>
         Перейти к основному контенту
       </a>
-    </header>
+    </>
   );
 };
 

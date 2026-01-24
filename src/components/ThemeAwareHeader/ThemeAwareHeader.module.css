@@ -1,29 +1,68 @@
-.header {
+/* ============================================
+   ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ КОНТЕЙНЕРОВ
+   ============================================ */
+
+.logoContainer,
+.navContainer,
+.themeContainer {
   position: fixed;
   top: 24px;
-  right: 24px;
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: var(--bg-primary);
-  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.8); /* Light theme glassmorphism */
+  padding: 12px 20px;
   border-radius: 50px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-default);
-  overflow: visible;
+  display: flex;
+  align-items: center;
 }
 
-/* Бургер-кнопка */
+/* ============================================
+   КОНТЕЙНЕР 1: ЛОГОТИП (СЛЕВА)
+   ============================================ */
+
+.logoContainer {
+  left: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   КОНТЕЙНЕР 2: НАВИГАЦИЯ (ЦЕНТР)
+   ============================================ */
+
+.navContainer {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .menuButton {
-  overflow: visible;
   display: none;
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-primary);
-  padding: 8px;
   border-radius: 50%;
   transition: background 0.3s;
 }
@@ -32,16 +71,12 @@
   background: var(--bg-secondary);
 }
 
-/* Навигация */
 .nav {
-  overflow: visible;
   display: flex;
   gap: 24px;
-  margin-right: 16px;
 }
 
 .navLink {
-  overflow: visible;
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
@@ -56,38 +91,53 @@
 }
 
 .navLink.active {
-  color: var(--accent-blue);
-  overflow: visible;
-  /* Убран фон у активной кнопки */
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback for older browsers */
 }
 
-/* White sun icon in dark theme */
-[data-theme='dark'] .themeToggle svg:first-child {
-  color: white;
+/* ЛОГОТИП ВНУТРИ МОБИЛЬНОГО МЕНЮ - СКРЫТ НА ДЕСКТОПЕ */
+.mobileMenuLogo {
+  display: none;
+}
+
+/* ============================================
+   КОНТЕЙНЕР 3: ТЕМА (СПРАВА)
+   ============================================ */
+
+.themeContainer {
+  right: 24px;
+  padding: 8px;
 }
 
 .themeToggle {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--bg-tertiary, var(--bg-card));
-  border: 1px solid var(--border-default, var(--border-light));
+  background: var(--bg-tertiary);
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
-  overflow: visible;
 }
 
 .themeToggle:hover {
-  background: var(--bg-secondary, var(--bg-primary));
-  border-color: var(--accent-blue);
-  overflow: visible;
+  background: var(--bg-secondary);
 }
 
+[data-theme='dark'] .themeToggle svg {
+  color: white;
+}
+
+/* ============================================
+   SKIP LINK (ACCESSIBILITY)
+   ============================================ */
+
 .skipLink {
-  overflow: visible;
   position: absolute;
   top: -40px;
   left: 0;
@@ -98,6 +148,7 @@
   transition: top 0.3s;
   opacity: 0;
   pointer-events: none;
+  z-index: 9999;
 }
 
 .skipLink:focus {
@@ -106,61 +157,147 @@
   pointer-events: auto;
 }
 
-/* Стили для мобильного меню */
+/* ============================================
+   MOBILE (768px и меньше)
+   ============================================ */
+
 @media (max-width: 768px) {
-  .header {
-    right: 16px;
+  /* СКРЫВАЕМ ДЕСКТОПНЫЙ ЛОГОТИП */
+  .logoContainer {
+    display: none;
+  }
+
+  /* Навигация становится бургер-меню СЛЕВА */
+  .navContainer {
     left: 16px;
-    padding: 12px 16px;
-    justify-content: space-between;
-    overflow: visible;
+    transform: none;
+    padding: 8px;
   }
 
   .menuButton {
-    display: block;
-    z-index: 1001; /* Выше чем остальные элементы хедера */
-    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
   }
 
   .nav {
-    position: absolute;
-    top: calc(100% + 8px); /* Ниже хедера с небольшим отступом */
-    right: 0;
+    position: fixed;
+    top: 70px; /* Под header */
     left: 0;
-    background: rgba(255, 255, 255, 0.75); /* Белый фон с 75% прозрачностью */
+    right: 0;
+    width: 100%;
+    min-width: 320px;
+    transform: none;
+    background: var(--bg-primary);
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    padding: 0; /* Убираем внутренние отступы */
-    gap: 40px;
+    padding: 0;
+    gap: 30px;
     max-height: 0;
     opacity: 0;
-    overflow: hidden; /* Скрываем содержимое когда меню закрыто */
-    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-    z-index: 1000;
-    border-radius: 15px; /* Закругленные углы */
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease,
+      padding 0.3s ease;
+    border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-default);
   }
 
   .nav.navOpen {
-    max-height: 500px; /* Достаточно большая высота для содержимого */
+    max-height: 500px;
     opacity: 1;
-    padding: 20px 0; /* Возвращаем отступы при открытии */
-    overflow: visible;
+    padding: 30px 0;
   }
 
   .nav.navClosed {
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
-    padding: 0; /* Убираем отступы при закрытии */
-    display: block; /* Используем block вместо none для анимации */
+    padding: 0;
+  }
+
+  /* ПОКАЗЫВАЕМ ЛОГОТИП ВНУТРИ МОБИЛЬНОГО МЕНЮ */
+  .mobileMenuLogo {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .mobileLogoText {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .navLink {
     font-size: 18px;
-    overflow: visible;
+    width: 100%;
+    text-align: center;
   }
+
+  /* Тема СПРАВА */
+  .themeContainer {
+    right: 16px;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (480px и меньше)
+   ============================================ */
+
+@media (max-width: 480px) {
+  .navContainer,
+  .themeContainer {
+    top: 16px;
+  }
+
+  .navContainer {
+    left: 12px;
+    padding: 6px;
+  }
+
+  .themeContainer {
+    right: 12px;
+    padding: 6px;
+  }
+
+  .themeToggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menuButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav {
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-width: 320px;
+  }
+
+  .mobileLogoText {
+    font-size: 20px;
+  }
+
+  .navLink {
+    font-size: 16px;
+  }
+}
+
+/* Dark theme glassmorphism for header containers */
+[data-theme='dark'] .logoContainer,
+[data-theme='dark'] .navContainer,
+[data-theme='dark'] .themeContainer {
+  background: rgba(10, 11, 13, 0.8);
 }

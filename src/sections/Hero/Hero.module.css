@@ -354,3 +354,53 @@
 .btnOutline:hover {
   transform: translateY(-2px);
 }
+/* ============================================
+TELEGRAM WEBVIEW FIXES - НЕ ВЛИЯЕТ НА ОБЫЧНЫЕ БРАУЗЕРЫ
+============================================ */
+
+/* Фикс только для Telegram WebView */
+.telegramView.heroSection {
+  min-height: auto;
+  height: auto;
+  padding-bottom: 60px;
+}
+
+.telegramView .heroGrid {
+  min-height: auto;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.telegramView .heroRight {
+  margin-top: 0;
+}
+
+.telegramView .heroImage {
+  max-height: 500px;
+  width: auto;
+  height: auto;
+}
+
+/* Telegram Mobile Fix */
+@media (max-width: 480px) {
+  .telegramView.heroSection {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .telegramView .heroGrid {
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .telegramView .heroRight {
+    max-width: 280px;
+    margin-bottom: 0;
+  }
+
+  .telegramView .heroImage {
+    width: 280px;
+    height: 280px;
+    max-height: 280px;
+  }
+}

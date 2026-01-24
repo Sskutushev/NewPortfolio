@@ -8,7 +8,7 @@
   margin: 0;
 }
 
-/* .aboutSection::before {
+.aboutSection::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -19,7 +19,7 @@
   background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
   filter: blur(80px);
   pointer-events: none;
-} */
+}
 
 /* Светлая тема */
 [data-theme='light'] .aboutSection::before {
@@ -237,6 +237,12 @@
   justify-content: center;
   width: 100%;
   margin-top: 35px;
+}
+
+@media (max-width: 768px) {
+  .floatingElementContainer {
+    display: none;
+  }
 }
 
 .floatingElement {

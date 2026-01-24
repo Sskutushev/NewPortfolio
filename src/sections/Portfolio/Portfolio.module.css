@@ -1,11 +1,10 @@
 .portfolioSection {
   margin-top: -50px;
-  padding: 150px 0; /* Увеличенные отступы сверху и снизу для десктопа */
+  padding: 150px 0;
   position: relative;
   width: 100%;
 }
 
-/* Фоновое изображение с размытием и зеркальным эффектом */
 .portfolioSection::before {
   content: '';
   position: absolute;
@@ -51,37 +50,6 @@
 
 .projectCardWrapper {
   position: absolute;
-  /* Позиции задаются через getFanPosition */
-}
-
-/* Mobile - horizontal scroll */
-@media (max-width: 768px) {
-  .portfolioFan {
-    position: static;
-    height: auto;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    gap: 10px; /* Уменьшенный зазор между карточками */
-    padding: 20px 0;
-    margin: 40px 0;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .portfolioFan::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-
-  .projectCardWrapper {
-    position: relative !important;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 320px !important; /* Установим фиксированную ширину для карточки */
-    max-width: 320px;
-  }
 }
 
 .viewAllBtn {
@@ -107,60 +75,51 @@
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
 }
 
+/* Mobile Carousel styles */
+.mobileCarouselContainer {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 20px 5%; /* Add horizontal padding for centering */
+  margin: 40px 0;
+  scroll-snap-type: x mandatory; /* Enable snapping */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mobileCarouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.mobileCardWrapper {
+  flex: 0 0 90%;
+  max-width: 340px;
+  scroll-snap-align: center; /* Center the snapped item */
+}
+
 /* Tablet */
 @media (max-width: 1200px) {
   .portfolioSection {
-    padding: 120px 0; /* Увеличенные отступы для планшета */
+    padding: 120px 0;
   }
-
   .portfolioFan {
     height: 500px;
-  }
-
-  /* Уменьшить расстояния между карточками */
-  .projectCardWrapper {
-    /* Will be positioned via JavaScript */
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .portfolioFan {
-    position: static;
-    height: auto;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    gap: 10px; /* Уменьшенный зазор между карточками */
-    padding: 20px 0;
-    margin: 40px auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .portfolioFan::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-
-  .projectCardWrapper {
-    position: relative !important;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 320px !important; /* Ширина карточки 320px */
-    max-width: 320px; /* Максимальная ширина */
-    margin: 0 auto; /* Центрирование */
-    /* Сбросить все трансформации */
-    transform: none !important;
+    display: none; /* Hide desktop fan layout */
   }
 
   .sectionHeader {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .viewAllBtn {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 
@@ -176,5 +135,9 @@
     max-width: 320px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .mobileCardWrapper {
+    flex-basis: 95%;
   }
 }

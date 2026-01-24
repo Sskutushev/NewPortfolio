@@ -291,10 +291,50 @@ useMutation({
   {
     id: 10,
     title: 'TOT',
-    category: 'Placeholder',
-    description: 'Placeholder project description.',
-    tech: ['React', 'TypeScript'],
+    category: 'Landing / Platform',
+    description:
+      'Многостраничный лендинг платформы «Торгуй. Обучай. Твори»: анимированные 3D-изометрические элементы, сложные интерактивные блоки, сценарная навигация и карта пользовательских путей.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS'],
     image: '/images/project-tot.jpg',
+    flow: {
+      input:
+        'Сверстать pixel-perfect дизайн-макеты многостраничной платформы и реализовать архитектуру интерфейса образовательного продукта с элементами социальной сети и инвестирования. Проект включал лендинг, входную группу и интерфейс основной платформы.',
+      process:
+        'Проект разрабатывался на современном стеке React + TypeScript + Tailwind CSS. Я участвовал в формировании UI/UX-логики, проектировании структуры интерфейса и архитектуры компонентов.\\n\\nВ рамках работы реализованы:\\n\\nлендинг (7 страниц) с анимациями, интерактивными под-вкладками и сложными переходами\\n\\nвходная группа (5 страниц): регистрация, авторизация, пользовательские сценарии\\n\\nархитектура интерфейса основной платформы с глубокой иерархией компонентов\\n\\nВыполнена поэтапная кроссбраузерная и адаптивная верстка. Интерфейс готовился к дальнейшей интеграции с backend через API и CMS-ядро UNA. Я взаимодействовал с командой сторонних разработчиков CMS, участвовал в обсуждении реализации функционала и ограничений платформы. По завершении подготовил полную техническую документацию проекта.',
+      output:
+        'Полностью сверстанный и архитектурно подготовленный frontend крупной платформы, готовый к интеграции и масштабированию. Проект был заморожен по бизнес-причинам (отсутствие инвестиций), однако дал глубокий практический опыт продуктовой разработки и расширил мои компетенции как full-stack разработчика.',
+    },
+    codeHighlight: {
+      title: 'Scalable React UI Architecture',
+      code: `// src/components/common/BaseButton.tsx
+interface BaseButtonProps {
+  variant?: 'primary' | 'secondary' | 'outline';
+  disabled?: boolean;
+  onClick?: () => void;
+}
+
+export const BaseButton = ({
+  variant = 'primary',
+  disabled,
+  onClick,
+  children,
+}: React.PropsWithChildren<BaseButtonProps>) => {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={\`rounded-lg px-4 py-2 transition
+        \${variant === 'primary' && 'bg-blue-600 text-white'}
+        \${variant === 'secondary' && 'bg-gray-200 text-gray-800'}
+        \${variant === 'outline' && 'border border-blue-600 text-blue-600'}
+      \`}
+    >
+      {children}
+    </button>
+  );
+};`,
+      language: 'typescript',
+    },
   },
   {
     id: 11,

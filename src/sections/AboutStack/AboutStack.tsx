@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styles from './AboutStack.module.css';
-import MouseTrailCanvas from '../../components/MouseTrailCanvas/MouseTrailCanvas';
+import MouseTrailCanvas from '../../components/MouseTrailCanvas/MouseTrailCanvas'; // Re-import MouseTrailCanvas
 
 const AboutStack: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -35,8 +35,11 @@ const AboutStack: React.FC = () => {
       data-auto-scroll-section
       aria-labelledby="about-heading"
     >
-      <MouseTrailCanvas sectionRef={sectionRef} />
+      <MouseTrailCanvas sectionRef={sectionRef} />{' '}
+      {/* Restore MouseTrailCanvas */}
       <div style={{ position: 'relative', zIndex: 2 }}>
+        {' '}
+        {/* Restore zIndex */}
         <div className="container">
           <div className={styles.aboutGrid}>
             {/* Левая карточка - Обо мне */}
@@ -116,7 +119,6 @@ const AboutStack: React.FC = () => {
             </motion.div>
           </div>
         </div>
-
         {/* Floating element at the bottom center of the section */}
         <div className={styles.floatingElementContainer}>
           <motion.div

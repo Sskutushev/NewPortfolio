@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
+import { isTelegramWebView } from '../../utils/isTelegramWebView';
 
 const Hero: React.FC = () => {
+  const [isTg] = useState(isTelegramWebView());
+
+  useEffect(() => {
+    if (isTg && window.Telegram?.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+  }, [isTg]);
+
   const scrollToPortfolio = () => {
     document.getElementById('portfolio')?.scrollIntoView({
       behavior: 'smooth',
@@ -17,7 +27,7 @@ const Hero: React.FC = () => {
 
   return (
     <section
-      className={styles.heroSection}
+      className={`${styles.heroSection} ${isTg ? styles.telegramView : ''}`}
       id="hero"
       data-auto-scroll-section
       aria-labelledby="hero-title"
